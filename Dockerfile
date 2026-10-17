@@ -3,7 +3,8 @@ FROM python:3.11-slim
 
 # Prevent Python from writing .pyc files and enable unbuffered logging
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app/ml/src:/app
 
 WORKDIR /app
 
@@ -14,16 +15,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt pyproject.toml /app/
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir -e .
+# Install Python third-party dependencies first to maximize Docker layer cache
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code and trained artifacts
+# Copy package config, documentation, application code, and trained artifacts
+COPY pyproject.toml README.md /app/
 COPY artifacts/ /app/artifacts/
 COPY data/ /app/data/
 COPY ml/ /app/ml/
 COPY api/ /app/api/
+
+# Install local package in editable mode now that ml/src and README.md exist
+RUN pip install --no-cache-dir -e .
 
 ENV PORT=8000
 EXPOSE 8000
