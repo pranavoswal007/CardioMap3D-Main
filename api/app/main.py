@@ -331,6 +331,7 @@ async def custom_http_exception_handler(request: Request, exc: HTTPException) ->
 
 
 @app.get("/health", response_model=HealthResponse)
+@app.get("/healthz", response_model=HealthResponse)
 def health_check() -> HealthResponse:
     """Check API operational health, model version, and artifact readiness."""
     return HealthResponse(
