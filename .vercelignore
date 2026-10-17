@@ -1,12 +1,13 @@
 # Vercel deployment ignore rules
-.git
-.github
-api/
-ml/
-data/
-docs/
-artifacts/*.joblib
-artifacts/*.pdf
+# Anchored to root to avoid ignoring web/src/api/
+/.git
+/.github
+/api/
+/ml/
+/data/
+/docs/
+/artifacts/*.joblib
+/artifacts/*.pdf
 .pytest_cache
 __pycache__
 *.pyc
