@@ -3,6 +3,13 @@
 > **Interactive 3D Coronary Artery Risk Visualization & Multi-Vessel Stenosis Decision-Support System**  
 > Multimodal AI Hackathon 2026 — Track A (Production Monorepo)
 
+[![Live Web App](https://img.shields.io/badge/Vercel-Frontend_Live-black?style=flat&logo=vercel)](https://cardiomap3d.vercel.app)
+[![Live Backend API](https://img.shields.io/badge/Render-Backend_Live-46E3B7?style=flat&logo=render&logoColor=black)](https://cardiomap3d-api.onrender.com/health)
+
+- 🌐 **Live Web Application (Vercel)**: [https://cardiomap3d.vercel.app](https://cardiomap3d.vercel.app)
+- ⚙️ **Live ML Backend (Render)**: [https://cardiomap3d-api.onrender.com](https://cardiomap3d-api.onrender.com)
+- 🩺 **API Health Check**: [https://cardiomap3d-api.onrender.com/health](https://cardiomap3d-api.onrender.com/health)
+
 ---
 
 ## Clinical Disclaimer (Mandatory)
