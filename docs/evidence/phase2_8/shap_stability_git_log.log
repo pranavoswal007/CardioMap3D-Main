@@ -1,0 +1,2609 @@
+commit aa839d92ce2770629af1cfb45acd245e8611d9a7
+Author: Pranav Oswal <pranavoswal@users.noreply.github.com>
+Date:   Tue Oct 13 16:57:38 2026 +0530
+
+    Phase 2.8: contract freeze, per-target cache, artifact classification
+---
+ artifacts/shap_stability.json | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/artifacts/shap_stability.json b/artifacts/shap_stability.json
+index 5bd2ea3..b18af58 100644
+--- a/artifacts/shap_stability.json
++++ b/artifacts/shap_stability.json
+@@ -1,4 +1,9 @@
+ {
++  "provenance": {
++    "bootstrap_refits": 20,
++    "top_k": 10,
++    "explainer_types": "native tree and linear explainers"
++  },
+   "y_cad": {
+     "Age": {
+       "top10_count": 20,
+
+commit 10439d19b8c6a1a064dda112912c6303f018c232
+Author: Pranav Oswal <pranavoswal@users.noreply.github.com>
+Date:   Tue Oct 13 15:03:24 2026 +0530
+
+    Phase 2.7: disclaimer, targets param, tracked artifacts, fresh-clone check
+---
+ artifacts/shap_stability.json | 806 +++++++++++++++++++-----------------------
+ 1 file changed, 367 insertions(+), 439 deletions(-)
+
+diff --git a/artifacts/shap_stability.json b/artifacts/shap_stability.json
+index 51d0e89..5bd2ea3 100644
+--- a/artifacts/shap_stability.json
++++ b/artifacts/shap_stability.json
+@@ -18,157 +18,13 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
+-    "BMI": {
++    "Sex": {
+       "top10_count": 4,
+       "resamples": 20,
+       "persistence": 0.2,
+       "label": "low"
+     },
+-    "BP": {
+-      "top10_count": 5,
+-      "resamples": 20,
+-      "persistence": 0.25,
+-      "label": "low"
+-    },
+-    "PR": {
+-      "top10_count": 9,
+-      "resamples": 20,
+-      "persistence": 0.45,
+-      "label": "low"
+-    },
+-    "FBS": {
+-      "top10_count": 2,
+-      "resamples": 20,
+-      "persistence": 0.1,
+-      "label": "low"
+-    },
+-    "CR": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "TG": {
+-      "top10_count": 15,
+-      "resamples": 20,
+-      "persistence": 0.75,
+-      "label": "moderate"
+-    },
+-    "LDL": {
+-      "top10_count": 3,
+-      "resamples": 20,
+-      "persistence": 0.15,
+-      "label": "low"
+-    },
+-    "HDL": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "BUN": {
+-      "top10_count": 1,
+-      "resamples": 20,
+-      "persistence": 0.05,
+-      "label": "low"
+-    },
+-    "ESR": {
+-      "top10_count": 2,
+-      "resamples": 20,
+-      "persistence": 0.1,
+-      "label": "low"
+-    },
+-    "HB": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "K": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "Na": {
+-      "top10_count": 2,
+-      "resamples": 20,
+-      "persistence": 0.1,
+-      "label": "low"
+-    },
+-    "WBC": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "Lymph": {
+-      "top10_count": 6,
+-      "resamples": 20,
+-      "persistence": 0.3,
+-      "label": "low"
+-    },
+-    "Neut": {
+-      "top10_count": 2,
+-      "resamples": 20,
+-      "persistence": 0.1,
+-      "label": "low"
+-    },
+-    "PLT": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "EF-TTE": {
+-      "top10_count": 8,
+-      "resamples": 20,
+-      "persistence": 0.4,
+-      "label": "low"
+-    },
+-    "Function Class": {
+-      "top10_count": 8,
+-      "resamples": 20,
+-      "persistence": 0.4,
+-      "label": "low"
+-    },
+-    "Region RWMA": {
+-      "top10_count": 20,
+-      "resamples": 20,
+-      "persistence": 1.0,
+-      "label": "stable"
+-    },
+-    "BBB_N": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "BBB_RBBB": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "VHD_N": {
+-      "top10_count": 8,
+-      "resamples": 20,
+-      "persistence": 0.4,
+-      "label": "low"
+-    },
+-    "VHD_Severe": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "VHD_mild": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "Sex": {
++    "BMI": {
+       "top10_count": 4,
+       "resamples": 20,
+       "persistence": 0.2,
+@@ -246,6 +102,18 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "BP": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
+     "Edema": {
+       "top10_count": 0,
+       "resamples": 20,
+@@ -288,6 +156,12 @@
+       "persistence": 0.65,
+       "label": "moderate"
+     },
++    "Function Class": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
+     "Atypical": {
+       "top10_count": 4,
+       "resamples": 20,
+@@ -347,43 +221,11 @@
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+-    }
+-  },
+-  "y_lad": {
+-    "Age": {
+-      "top10_count": 20,
+-      "resamples": 20,
+-      "persistence": 1.0,
+-      "label": "stable"
+     },
+-    "Weight": {
+-      "top10_count": 3,
+-      "resamples": 20,
+-      "persistence": 0.15,
+-      "label": "low"
+-    },
+-    "Length": {
+-      "top10_count": 2,
+-      "resamples": 20,
+-      "persistence": 0.1,
+-      "label": "low"
+-    },
+-    "BMI": {
+-      "top10_count": 1,
+-      "resamples": 20,
+-      "persistence": 0.05,
+-      "label": "low"
+-    },
+-    "BP": {
+-      "top10_count": 5,
+-      "resamples": 20,
+-      "persistence": 0.25,
+-      "label": "low"
+-    },
+-    "PR": {
+-      "top10_count": 4,
++    "BBB": {
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.2,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "FBS": {
+@@ -393,135 +235,131 @@
+       "label": "low"
+     },
+     "CR": {
+-      "top10_count": 3,
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.15,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "TG": {
+-      "top10_count": 11,
++      "top10_count": 15,
+       "resamples": 20,
+-      "persistence": 0.55,
++      "persistence": 0.75,
+       "label": "moderate"
+     },
+     "LDL": {
+-      "top10_count": 2,
++      "top10_count": 3,
+       "resamples": 20,
+-      "persistence": 0.1,
++      "persistence": 0.15,
+       "label": "low"
+     },
+     "HDL": {
+-      "top10_count": 1,
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.05,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "BUN": {
+-      "top10_count": 0,
++      "top10_count": 1,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.05,
+       "label": "low"
+     },
+     "ESR": {
+-      "top10_count": 14,
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.7,
+-      "label": "moderate"
++      "persistence": 0.1,
++      "label": "low"
+     },
+     "HB": {
+-      "top10_count": 2,
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.1,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "K": {
+-      "top10_count": 1,
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.05,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "Na": {
+-      "top10_count": 4,
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.2,
++      "persistence": 0.1,
+       "label": "low"
+     },
+     "WBC": {
+-      "top10_count": 5,
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.25,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "Lymph": {
+-      "top10_count": 13,
++      "top10_count": 6,
+       "resamples": 20,
+-      "persistence": 0.65,
+-      "label": "moderate"
++      "persistence": 0.3,
++      "label": "low"
+     },
+     "Neut": {
+-      "top10_count": 13,
+-      "resamples": 20,
+-      "persistence": 0.65,
+-      "label": "moderate"
+-    },
+-    "PLT": {
+       "top10_count": 2,
+       "resamples": 20,
+       "persistence": 0.1,
+       "label": "low"
+     },
+-    "EF-TTE": {
+-      "top10_count": 19,
+-      "resamples": 20,
+-      "persistence": 0.95,
+-      "label": "stable"
+-    },
+-    "Function Class": {
++    "PLT": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "EF-TTE": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
+     "Region RWMA": {
+       "top10_count": 20,
+       "resamples": 20,
+       "persistence": 1.0,
+       "label": "stable"
+     },
+-    "BBB_N": {
+-      "top10_count": 0,
++    "VHD": {
++      "top10_count": 8,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.4,
+       "label": "low"
+-    },
+-    "BBB_RBBB": {
+-      "top10_count": 0,
++    }
++  },
++  "y_lad": {
++    "Age": {
++      "top10_count": 20,
+       "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
++      "persistence": 1.0,
++      "label": "stable"
+     },
+-    "VHD_N": {
+-      "top10_count": 0,
++    "Weight": {
++      "top10_count": 3,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.15,
+       "label": "low"
+     },
+-    "VHD_Severe": {
+-      "top10_count": 0,
++    "Length": {
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.1,
+       "label": "low"
+     },
+-    "VHD_mild": {
++    "Sex": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+     },
+-    "Sex": {
+-      "top10_count": 0,
++    "BMI": {
++      "top10_count": 1,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.05,
+       "label": "low"
+     },
+     "DM": {
+@@ -596,6 +434,18 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "BP": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
+     "Edema": {
+       "top10_count": 0,
+       "resamples": 20,
+@@ -638,6 +488,12 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "Function Class": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
+     "Atypical": {
+       "top10_count": 19,
+       "resamples": 20,
+@@ -697,104 +553,72 @@
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+-    }
+-  },
+-  "y_lcx": {
+-    "Age": {
+-      "top10_count": 20,
+-      "resamples": 20,
+-      "persistence": 1.0,
+-      "label": "stable"
+-    },
+-    "Weight": {
+-      "top10_count": 5,
+-      "resamples": 20,
+-      "persistence": 0.25,
+-      "label": "low"
+     },
+-    "Length": {
+-      "top10_count": 11,
+-      "resamples": 20,
+-      "persistence": 0.55,
+-      "label": "moderate"
+-    },
+-    "BMI": {
+-      "top10_count": 3,
+-      "resamples": 20,
+-      "persistence": 0.15,
+-      "label": "low"
+-    },
+-    "BP": {
+-      "top10_count": 8,
+-      "resamples": 20,
+-      "persistence": 0.4,
+-      "label": "low"
+-    },
+-    "PR": {
++    "BBB": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+     },
+     "FBS": {
+-      "top10_count": 15,
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.75,
+-      "label": "moderate"
++      "persistence": 0.1,
++      "label": "low"
+     },
+     "CR": {
+-      "top10_count": 14,
++      "top10_count": 3,
+       "resamples": 20,
+-      "persistence": 0.7,
+-      "label": "moderate"
++      "persistence": 0.15,
++      "label": "low"
+     },
+     "TG": {
+-      "top10_count": 17,
++      "top10_count": 11,
+       "resamples": 20,
+-      "persistence": 0.85,
+-      "label": "stable"
++      "persistence": 0.55,
++      "label": "moderate"
+     },
+     "LDL": {
+-      "top10_count": 8,
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.4,
++      "persistence": 0.1,
+       "label": "low"
+     },
+     "HDL": {
+-      "top10_count": 9,
++      "top10_count": 1,
+       "resamples": 20,
+-      "persistence": 0.45,
++      "persistence": 0.05,
+       "label": "low"
+     },
+     "BUN": {
+-      "top10_count": 4,
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.2,
++      "persistence": 0.0,
+       "label": "low"
+     },
+     "ESR": {
+-      "top10_count": 9,
++      "top10_count": 14,
+       "resamples": 20,
+-      "persistence": 0.45,
+-      "label": "low"
++      "persistence": 0.7,
++      "label": "moderate"
+     },
+     "HB": {
+-      "top10_count": 7,
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.35,
++      "persistence": 0.1,
+       "label": "low"
+     },
+     "K": {
+-      "top10_count": 3,
++      "top10_count": 1,
+       "resamples": 20,
+-      "persistence": 0.15,
++      "persistence": 0.05,
+       "label": "low"
+     },
+     "Na": {
+-      "top10_count": 14,
++      "top10_count": 4,
+       "resamples": 20,
+-      "persistence": 0.7,
+-      "label": "moderate"
++      "persistence": 0.2,
++      "label": "low"
+     },
+     "WBC": {
+       "top10_count": 5,
+@@ -803,75 +627,71 @@
+       "label": "low"
+     },
+     "Lymph": {
+-      "top10_count": 8,
++      "top10_count": 13,
+       "resamples": 20,
+-      "persistence": 0.4,
+-      "label": "low"
++      "persistence": 0.65,
++      "label": "moderate"
+     },
+     "Neut": {
+-      "top10_count": 1,
+-      "resamples": 20,
+-      "persistence": 0.05,
+-      "label": "low"
+-    },
+-    "PLT": {
+-      "top10_count": 11,
++      "top10_count": 13,
+       "resamples": 20,
+-      "persistence": 0.55,
++      "persistence": 0.65,
+       "label": "moderate"
+     },
+-    "EF-TTE": {
+-      "top10_count": 7,
++    "PLT": {
++      "top10_count": 2,
+       "resamples": 20,
+-      "persistence": 0.35,
++      "persistence": 0.1,
+       "label": "low"
+     },
+-    "Function Class": {
+-      "top10_count": 1,
++    "EF-TTE": {
++      "top10_count": 19,
+       "resamples": 20,
+-      "persistence": 0.05,
+-      "label": "low"
++      "persistence": 0.95,
++      "label": "stable"
+     },
+     "Region RWMA": {
+-      "top10_count": 0,
++      "top10_count": 20,
+       "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
++      "persistence": 1.0,
++      "label": "stable"
+     },
+-    "BBB_N": {
++    "VHD": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+-    },
+-    "BBB_RBBB": {
+-      "top10_count": 0,
++    }
++  },
++  "y_lcx": {
++    "Age": {
++      "top10_count": 20,
+       "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
++      "persistence": 1.0,
++      "label": "stable"
+     },
+-    "VHD_N": {
+-      "top10_count": 0,
++    "Weight": {
++      "top10_count": 5,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.25,
+       "label": "low"
+     },
+-    "VHD_Severe": {
+-      "top10_count": 0,
++    "Length": {
++      "top10_count": 11,
+       "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
++      "persistence": 0.55,
++      "label": "moderate"
+     },
+-    "VHD_mild": {
++    "Sex": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+     },
+-    "Sex": {
+-      "top10_count": 0,
++    "BMI": {
++      "top10_count": 3,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.15,
+       "label": "low"
+     },
+     "DM": {
+@@ -946,6 +766,18 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "BP": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
+     "Edema": {
+       "top10_count": 0,
+       "resamples": 20,
+@@ -988,6 +820,12 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "Function Class": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
+     "Atypical": {
+       "top10_count": 0,
+       "resamples": 20,
+@@ -1027,195 +865,153 @@
+     "St Depression": {
+       "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "Tinversion": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "LVH": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    },
+-    "Poor R Progression": {
+-      "top10_count": 0,
+-      "resamples": 20,
+-      "persistence": 0.0,
+-      "label": "low"
+-    }
+-  },
+-  "y_rca": {
+-    "Age": {
+-      "top10_count": 18,
+-      "resamples": 20,
+-      "persistence": 0.9,
+-      "label": "stable"
+-    },
+-    "Weight": {
+-      "top10_count": 3,
+-      "resamples": 20,
+-      "persistence": 0.15,
+-      "label": "low"
+-    },
+-    "Length": {
+-      "top10_count": 7,
+-      "resamples": 20,
+-      "persistence": 0.35,
++      "persistence": 0.0,
+       "label": "low"
+     },
+-    "BMI": {
+-      "top10_count": 3,
++    "Tinversion": {
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.15,
++      "persistence": 0.0,
+       "label": "low"
+     },
+-    "BP": {
+-      "top10_count": 3,
++    "LVH": {
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.15,
++      "persistence": 0.0,
+       "label": "low"
+     },
+-    "PR": {
+-      "top10_count": 3,
++    "Poor R Progression": {
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.15,
++      "persistence": 0.0,
+       "label": "low"
+     },
+-    "FBS": {
+-      "top10_count": 9,
++    "BBB": {
++      "top10_count": 0,
+       "resamples": 20,
+-      "persistence": 0.45,
++      "persistence": 0.0,
+       "label": "low"
+     },
+-    "CR": {
+-      "top10_count": 6,
++    "FBS": {
++      "top10_count": 15,
+       "resamples": 20,
+-      "persistence": 0.3,
+-      "label": "low"
++      "persistence": 0.75,
++      "label": "moderate"
+     },
+-    "TG": {
++    "CR": {
+       "top10_count": 14,
+       "resamples": 20,
+       "persistence": 0.7,
+       "label": "moderate"
+     },
++    "TG": {
++      "top10_count": 17,
++      "resamples": 20,
++      "persistence": 0.85,
++      "label": "stable"
++    },
+     "LDL": {
+-      "top10_count": 1,
++      "top10_count": 8,
+       "resamples": 20,
+-      "persistence": 0.05,
++      "persistence": 0.4,
+       "label": "low"
+     },
+     "HDL": {
+-      "top10_count": 3,
++      "top10_count": 9,
+       "resamples": 20,
+-      "persistence": 0.15,
++      "persistence": 0.45,
+       "label": "low"
+     },
+     "BUN": {
+-      "top10_count": 1,
++      "top10_count": 4,
+       "resamples": 20,
+-      "persistence": 0.05,
++      "persistence": 0.2,
+       "label": "low"
+     },
+     "ESR": {
+-      "top10_count": 16,
++      "top10_count": 9,
+       "resamples": 20,
+-      "persistence": 0.8,
+-      "label": "stable"
++      "persistence": 0.45,
++      "label": "low"
+     },
+     "HB": {
+-      "top10_count": 4,
++      "top10_count": 7,
+       "resamples": 20,
+-      "persistence": 0.2,
++      "persistence": 0.35,
+       "label": "low"
+     },
+     "K": {
+-      "top10_count": 6,
+-      "resamples": 20,
+-      "persistence": 0.3,
+-      "label": "low"
+-    },
+-    "Na": {
+       "top10_count": 3,
+       "resamples": 20,
+       "persistence": 0.15,
+       "label": "low"
+     },
+-    "WBC": {
+-      "top10_count": 8,
+-      "resamples": 20,
+-      "persistence": 0.4,
+-      "label": "low"
+-    },
+-    "Lymph": {
+-      "top10_count": 14,
+-      "resamples": 20,
+-      "persistence": 0.7,
+-      "label": "moderate"
+-    },
+-    "Neut": {
++    "Na": {
+       "top10_count": 14,
+       "resamples": 20,
+       "persistence": 0.7,
+       "label": "moderate"
+     },
+-    "PLT": {
++    "WBC": {
+       "top10_count": 5,
+       "resamples": 20,
+       "persistence": 0.25,
+       "label": "low"
+     },
+-    "EF-TTE": {
+-      "top10_count": 5,
++    "Lymph": {
++      "top10_count": 8,
+       "resamples": 20,
+-      "persistence": 0.25,
++      "persistence": 0.4,
+       "label": "low"
+     },
+-    "Function Class": {
++    "Neut": {
+       "top10_count": 1,
+       "resamples": 20,
+       "persistence": 0.05,
+       "label": "low"
+     },
+-    "Region RWMA": {
+-      "top10_count": 1,
++    "PLT": {
++      "top10_count": 11,
+       "resamples": 20,
+-      "persistence": 0.05,
++      "persistence": 0.55,
++      "label": "moderate"
++    },
++    "EF-TTE": {
++      "top10_count": 7,
++      "resamples": 20,
++      "persistence": 0.35,
+       "label": "low"
+     },
+-    "BBB_N": {
++    "Region RWMA": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+     },
+-    "BBB_RBBB": {
++    "VHD": {
+       "top10_count": 0,
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
+-    },
+-    "VHD_N": {
+-      "top10_count": 1,
++    }
++  },
++  "y_rca": {
++    "Age": {
++      "top10_count": 18,
+       "resamples": 20,
+-      "persistence": 0.05,
+-      "label": "low"
++      "persistence": 0.9,
++      "label": "stable"
+     },
+-    "VHD_Severe": {
+-      "top10_count": 0,
++    "Weight": {
++      "top10_count": 3,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.15,
+       "label": "low"
+     },
+-    "VHD_mild": {
+-      "top10_count": 0,
++    "Length": {
++      "top10_count": 7,
+       "resamples": 20,
+-      "persistence": 0.0,
++      "persistence": 0.35,
+       "label": "low"
+     },
+     "Sex": {
+@@ -1224,6 +1020,12 @@
+       "persistence": 0.25,
+       "label": "low"
+     },
++    "BMI": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
+     "DM": {
+       "top10_count": 16,
+       "resamples": 20,
+@@ -1296,6 +1098,18 @@
+       "persistence": 0.0,
+       "label": "low"
+     },
++    "BP": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
+     "Edema": {
+       "top10_count": 0,
+       "resamples": 20,
+@@ -1338,6 +1152,12 @@
+       "persistence": 0.2,
+       "label": "low"
+     },
++    "Function Class": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
+     "Atypical": {
+       "top10_count": 4,
+       "resamples": 20,
+@@ -1397,6 +1217,114 @@
+       "resamples": 20,
+       "persistence": 0.0,
+       "label": "low"
++    },
++    "BBB": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "FBS": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "CR": {
++      "top10_count": 6,
++      "resamples": 20,
++      "persistence": 0.3,
++      "label": "low"
++    },
++    "TG": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "LDL": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "HDL": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "BUN": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "ESR": {
++      "top10_count": 16,
++      "resamples": 20,
++      "persistence": 0.8,
++      "label": "stable"
++    },
++    "HB": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "K": {
++      "top10_count": 6,
++      "resamples": 20,
++      "persistence": 0.3,
++      "label": "low"
++    },
++    "Na": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "WBC": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "Lymph": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "Neut": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "PLT": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "EF-TTE": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "Region RWMA": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "VHD": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
+     }
+   }
+ }
+\ No newline at end of file
+
+commit fbc8d30231e769c23586de07f3482b66188b50f4
+Author: Pranav Oswal <pranavoswal@users.noreply.github.com>
+Date:   Mon Oct 12 22:36:33 2026 +0530
+
+    Phase 2: FastAPI backend
+---
+ artifacts/shap_stability.json | 1402 +++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 1402 insertions(+)
+
+diff --git a/artifacts/shap_stability.json b/artifacts/shap_stability.json
+new file mode 100644
+index 0000000..51d0e89
+--- /dev/null
++++ b/artifacts/shap_stability.json
+@@ -0,0 +1,1402 @@
++{
++  "y_cad": {
++    "Age": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "Weight": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "Length": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BMI": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "BP": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "FBS": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "CR": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "TG": {
++      "top10_count": 15,
++      "resamples": 20,
++      "persistence": 0.75,
++      "label": "moderate"
++    },
++    "LDL": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "HDL": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BUN": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "ESR": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "HB": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "K": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Na": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "WBC": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Lymph": {
++      "top10_count": 6,
++      "resamples": 20,
++      "persistence": 0.3,
++      "label": "low"
++    },
++    "Neut": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "PLT": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "EF-TTE": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "Function Class": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "Region RWMA": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "BBB_N": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BBB_RBBB": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_N": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "VHD_Severe": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_mild": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Sex": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "DM": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "HTN": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "Current Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "EX-Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "FH": {
++      "top10_count": 7,
++      "resamples": 20,
++      "persistence": 0.35,
++      "label": "low"
++    },
++    "Obesity": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CRF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CVA": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Airway disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Thyroid Disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CHF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "DLP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Edema": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Weak Peripheral Pulse": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Lung rales": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Systolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Diastolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Typical Chest Pain": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "Dyspnea": {
++      "top10_count": 13,
++      "resamples": 20,
++      "persistence": 0.65,
++      "label": "moderate"
++    },
++    "Atypical": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "Nonanginal": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Exertional CP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "LowTH Ang": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Q Wave": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Elevation": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Depression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Tinversion": {
++      "top10_count": 12,
++      "resamples": 20,
++      "persistence": 0.6,
++      "label": "moderate"
++    },
++    "LVH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Poor R Progression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    }
++  },
++  "y_lad": {
++    "Age": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "Weight": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "Length": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "BMI": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "BP": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "FBS": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "CR": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "TG": {
++      "top10_count": 11,
++      "resamples": 20,
++      "persistence": 0.55,
++      "label": "moderate"
++    },
++    "LDL": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "HDL": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "BUN": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "ESR": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "HB": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "K": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "Na": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "WBC": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "Lymph": {
++      "top10_count": 13,
++      "resamples": 20,
++      "persistence": 0.65,
++      "label": "moderate"
++    },
++    "Neut": {
++      "top10_count": 13,
++      "resamples": 20,
++      "persistence": 0.65,
++      "label": "moderate"
++    },
++    "PLT": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "EF-TTE": {
++      "top10_count": 19,
++      "resamples": 20,
++      "persistence": 0.95,
++      "label": "stable"
++    },
++    "Function Class": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Region RWMA": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "BBB_N": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BBB_RBBB": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_N": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_Severe": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_mild": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Sex": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "DM": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "HTN": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "Current Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "EX-Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "FH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Obesity": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CRF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CVA": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Airway disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Thyroid Disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CHF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "DLP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Edema": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Weak Peripheral Pulse": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Lung rales": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Systolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Diastolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Typical Chest Pain": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "Dyspnea": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Atypical": {
++      "top10_count": 19,
++      "resamples": 20,
++      "persistence": 0.95,
++      "label": "stable"
++    },
++    "Nonanginal": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Exertional CP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "LowTH Ang": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Q Wave": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Elevation": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Depression": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "Tinversion": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "LVH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Poor R Progression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    }
++  },
++  "y_lcx": {
++    "Age": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "Weight": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "Length": {
++      "top10_count": 11,
++      "resamples": 20,
++      "persistence": 0.55,
++      "label": "moderate"
++    },
++    "BMI": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "BP": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "FBS": {
++      "top10_count": 15,
++      "resamples": 20,
++      "persistence": 0.75,
++      "label": "moderate"
++    },
++    "CR": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "TG": {
++      "top10_count": 17,
++      "resamples": 20,
++      "persistence": 0.85,
++      "label": "stable"
++    },
++    "LDL": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "HDL": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "BUN": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "ESR": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "HB": {
++      "top10_count": 7,
++      "resamples": 20,
++      "persistence": 0.35,
++      "label": "low"
++    },
++    "K": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "Na": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "WBC": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "Lymph": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "Neut": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "PLT": {
++      "top10_count": 11,
++      "resamples": 20,
++      "persistence": 0.55,
++      "label": "moderate"
++    },
++    "EF-TTE": {
++      "top10_count": 7,
++      "resamples": 20,
++      "persistence": 0.35,
++      "label": "low"
++    },
++    "Function Class": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "Region RWMA": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BBB_N": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BBB_RBBB": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_N": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_Severe": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_mild": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Sex": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "DM": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "HTN": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Current Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "EX-Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "FH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Obesity": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CRF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CVA": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Airway disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Thyroid Disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CHF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "DLP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Edema": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Weak Peripheral Pulse": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Lung rales": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Systolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Diastolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Typical Chest Pain": {
++      "top10_count": 20,
++      "resamples": 20,
++      "persistence": 1.0,
++      "label": "stable"
++    },
++    "Dyspnea": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Atypical": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Nonanginal": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Exertional CP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "LowTH Ang": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Q Wave": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Elevation": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Depression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Tinversion": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "LVH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Poor R Progression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    }
++  },
++  "y_rca": {
++    "Age": {
++      "top10_count": 18,
++      "resamples": 20,
++      "persistence": 0.9,
++      "label": "stable"
++    },
++    "Weight": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "Length": {
++      "top10_count": 7,
++      "resamples": 20,
++      "persistence": 0.35,
++      "label": "low"
++    },
++    "BMI": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "BP": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "PR": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "FBS": {
++      "top10_count": 9,
++      "resamples": 20,
++      "persistence": 0.45,
++      "label": "low"
++    },
++    "CR": {
++      "top10_count": 6,
++      "resamples": 20,
++      "persistence": 0.3,
++      "label": "low"
++    },
++    "TG": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "LDL": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "HDL": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "BUN": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "ESR": {
++      "top10_count": 16,
++      "resamples": 20,
++      "persistence": 0.8,
++      "label": "stable"
++    },
++    "HB": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "K": {
++      "top10_count": 6,
++      "resamples": 20,
++      "persistence": 0.3,
++      "label": "low"
++    },
++    "Na": {
++      "top10_count": 3,
++      "resamples": 20,
++      "persistence": 0.15,
++      "label": "low"
++    },
++    "WBC": {
++      "top10_count": 8,
++      "resamples": 20,
++      "persistence": 0.4,
++      "label": "low"
++    },
++    "Lymph": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "Neut": {
++      "top10_count": 14,
++      "resamples": 20,
++      "persistence": 0.7,
++      "label": "moderate"
++    },
++    "PLT": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "EF-TTE": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "Function Class": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "Region RWMA": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "BBB_N": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "BBB_RBBB": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_N": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "VHD_Severe": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "VHD_mild": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Sex": {
++      "top10_count": 5,
++      "resamples": 20,
++      "persistence": 0.25,
++      "label": "low"
++    },
++    "DM": {
++      "top10_count": 16,
++      "resamples": 20,
++      "persistence": 0.8,
++      "label": "stable"
++    },
++    "HTN": {
++      "top10_count": 1,
++      "resamples": 20,
++      "persistence": 0.05,
++      "label": "low"
++    },
++    "Current Smoker": {
++      "top10_count": 2,
++      "resamples": 20,
++      "persistence": 0.1,
++      "label": "low"
++    },
++    "EX-Smoker": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "FH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Obesity": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CRF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CVA": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Airway disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Thyroid Disease": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "CHF": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "DLP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Edema": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Weak Peripheral Pulse": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Lung rales": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Systolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Diastolic Murmur": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Typical Chest Pain": {
++      "top10_count": 19,
++      "resamples": 20,
++      "persistence": 0.95,
++      "label": "stable"
++    },
++    "Dyspnea": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "Atypical": {
++      "top10_count": 4,
++      "resamples": 20,
++      "persistence": 0.2,
++      "label": "low"
++    },
++    "Nonanginal": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Exertional CP": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "LowTH Ang": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Q Wave": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Elevation": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "St Depression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Tinversion": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "LVH": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    },
++    "Poor R Progression": {
++      "top10_count": 0,
++      "resamples": 20,
++      "persistence": 0.0,
++      "label": "low"
++    }
++  }
++}
+\ No newline at end of file

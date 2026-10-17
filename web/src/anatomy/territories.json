@@ -1,0 +1,138 @@
+[
+  {
+    "id": 1,
+    "name": "Basal anterior",
+    "vessel": "lad",
+    "ring": "basal",
+    "startAngle": -30,
+    "endAngle": 30
+  },
+  {
+    "id": 2,
+    "name": "Basal anteroseptal",
+    "vessel": "lad",
+    "ring": "basal",
+    "startAngle": 30,
+    "endAngle": 90
+  },
+  {
+    "id": 3,
+    "name": "Basal inferoseptal",
+    "vessel": "rca",
+    "ring": "basal",
+    "startAngle": 90,
+    "endAngle": 150
+  },
+  {
+    "id": 4,
+    "name": "Basal inferior",
+    "vessel": "rca",
+    "ring": "basal",
+    "startAngle": 150,
+    "endAngle": 210
+  },
+  {
+    "id": 5,
+    "name": "Basal inferolateral",
+    "vessel": "lcx",
+    "ring": "basal",
+    "startAngle": 210,
+    "endAngle": 270
+  },
+  {
+    "id": 6,
+    "name": "Basal anterolateral",
+    "vessel": "lcx",
+    "ring": "basal",
+    "startAngle": 270,
+    "endAngle": 330
+  },
+  {
+    "id": 7,
+    "name": "Mid anterior",
+    "vessel": "lad",
+    "ring": "mid",
+    "startAngle": -30,
+    "endAngle": 30
+  },
+  {
+    "id": 8,
+    "name": "Mid anteroseptal",
+    "vessel": "lad",
+    "ring": "mid",
+    "startAngle": 30,
+    "endAngle": 90
+  },
+  {
+    "id": 9,
+    "name": "Mid inferoseptal",
+    "vessel": "rca",
+    "ring": "mid",
+    "startAngle": 90,
+    "endAngle": 150
+  },
+  {
+    "id": 10,
+    "name": "Mid inferior",
+    "vessel": "rca",
+    "ring": "mid",
+    "startAngle": 150,
+    "endAngle": 210
+  },
+  {
+    "id": 11,
+    "name": "Mid inferolateral",
+    "vessel": "lcx",
+    "ring": "mid",
+    "startAngle": 210,
+    "endAngle": 270
+  },
+  {
+    "id": 12,
+    "name": "Mid anterolateral",
+    "vessel": "lcx",
+    "ring": "mid",
+    "startAngle": 270,
+    "endAngle": 330
+  },
+  {
+    "id": 13,
+    "name": "Apical anterior",
+    "vessel": "lad",
+    "ring": "apical",
+    "startAngle": -45,
+    "endAngle": 45
+  },
+  {
+    "id": 14,
+    "name": "Apical septal",
+    "vessel": "lad",
+    "ring": "apical",
+    "startAngle": 45,
+    "endAngle": 135
+  },
+  {
+    "id": 15,
+    "name": "Apical inferior",
+    "vessel": "rca",
+    "ring": "apical",
+    "startAngle": 135,
+    "endAngle": 225
+  },
+  {
+    "id": 16,
+    "name": "Apical lateral",
+    "vessel": "lcx",
+    "ring": "apical",
+    "startAngle": 225,
+    "endAngle": 315
+  },
+  {
+    "id": 17,
+    "name": "Apex",
+    "vessel": "lad",
+    "ring": "apex",
+    "startAngle": 0,
+    "endAngle": 360
+  }
+]

@@ -1,0 +1,6 @@
+==> Type checking TypeScript frontend...
+cd web && npm run type-check
+
+> web@0.0.0 type-check
+> tsc -b
+

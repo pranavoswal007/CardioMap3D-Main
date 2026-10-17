@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cardiomap3d"
+version = "0.1.0"
+description = "Interactive 3D coronary artery risk visualization and multi-vessel stenosis prediction system"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24.0,<2.0.0",
+    "scipy>=1.11.0",
+    "pandas>=2.1.0",
+    "openpyxl>=3.1.0",
+    "scikit-learn>=1.4.0",
+    "xgboost>=2.0.0",
+    "lightgbm>=4.3.0",
+    "shap>=0.44.0",
+    "imbalanced-learn>=0.12.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.28.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "pyyaml>=6.0.1",
+    "matplotlib>=3.8.0",
+    "onnx>=1.15.0",
+    "onnxruntime>=1.17.0",
+    "skl2onnx>=1.16.0",
+]
+
+[tool.setuptools.package-dir]
+"" = "ml/src"
+api = "api"
+
+[tool.setuptools.packages.find]
+where = ["ml/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["ml/tests", "api/tests"]
+pythonpath = ["ml/src", "."]
+addopts = "-v --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true

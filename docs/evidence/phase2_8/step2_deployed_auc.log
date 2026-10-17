@@ -1,0 +1,5 @@
+=== Printing deployed ROC-AUC per target from artifacts/metrics.json ===
+Y_CAD: model=SoftVotingEnsemble, ROC-AUC=0.9256, 95% CI=[0.8915, 0.9545]
+Y_LAD: model=RandomForest, ROC-AUC=0.8453, 95% CI=[0.7967, 0.8882]
+Y_LCX: model=LightGBM, ROC-AUC=0.7235, 95% CI=[0.665, 0.7761]
+Y_RCA: model=LGBM_Shallow, ROC-AUC=0.7397, 95% CI=[0.6826, 0.7921]

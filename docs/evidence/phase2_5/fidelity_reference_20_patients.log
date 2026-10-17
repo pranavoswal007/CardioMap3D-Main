@@ -1,0 +1,28 @@
+Reference background size: 100
+Production background size: 30
+Computing 20 patients: high-fidelity reference (nsamples=3000) vs production (nsamples=150)...
+Patient 00: ref_time=6.00s, prod_time=0.34s | top3_overlap=3/3 | spearman=0.8026
+Patient 01: ref_time=6.01s, prod_time=0.37s | top3_overlap=2/3 | spearman=0.7994
+Patient 02: ref_time=6.02s, prod_time=0.37s | top3_overlap=3/3 | spearman=0.4826
+Patient 03: ref_time=5.95s, prod_time=0.30s | top3_overlap=2/3 | spearman=0.6735
+Patient 04: ref_time=6.10s, prod_time=0.40s | top3_overlap=2/3 | spearman=0.5695
+Patient 05: ref_time=6.17s, prod_time=0.29s | top3_overlap=2/3 | spearman=0.4898
+Patient 06: ref_time=5.95s, prod_time=0.33s | top3_overlap=3/3 | spearman=0.7810
+Patient 07: ref_time=5.90s, prod_time=0.35s | top3_overlap=3/3 | spearman=0.6067
+Patient 08: ref_time=5.96s, prod_time=0.32s | top3_overlap=3/3 | spearman=0.5812
+Patient 09: ref_time=5.96s, prod_time=0.33s | top3_overlap=2/3 | spearman=0.4769
+Patient 10: ref_time=5.92s, prod_time=0.31s | top3_overlap=2/3 | spearman=0.8542
+Patient 11: ref_time=5.99s, prod_time=0.30s | top3_overlap=3/3 | spearman=0.6957
+Patient 12: ref_time=6.17s, prod_time=0.37s | top3_overlap=2/3 | spearman=0.6794
+Patient 13: ref_time=6.07s, prod_time=0.33s | top3_overlap=3/3 | spearman=0.7853
+Patient 14: ref_time=5.96s, prod_time=0.31s | top3_overlap=2/3 | spearman=0.6974
+Patient 15: ref_time=6.53s, prod_time=0.40s | top3_overlap=2/3 | spearman=0.6065
+Patient 16: ref_time=8.06s, prod_time=0.37s | top3_overlap=2/3 | spearman=0.6008
+Patient 17: ref_time=6.28s, prod_time=0.28s | top3_overlap=3/3 | spearman=0.6756
+Patient 18: ref_time=6.14s, prod_time=0.29s | top3_overlap=2/3 | spearman=0.6730
+Patient 19: ref_time=6.05s, prod_time=0.27s | top3_overlap=2/3 | spearman=0.7233
+
+SUMMARY OVER 20 PATIENTS:
+Average top-3 overlap: 2.40 / 3 (80.0%)
+Average Spearman rank correlation: 0.6627
+Saved artifacts/shap_reference_20_patients.joblib

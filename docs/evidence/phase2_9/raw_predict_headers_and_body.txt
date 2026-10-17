@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 11:56:23 GMT
+server: uvicorn
+content-length: 1099
+content-type: application/json
+vary: Origin
+
+{"cad":{"probability":0.8591,"label":1,"risk_level":"high","cohort_prevalence":0.7129,"relative_risk":1.21,"threshold":0.5377,"high_threshold":0.6877},"vessels":{"lad":{"probability":0.6488,"label":1,"risk_level":"moderate","cohort_prevalence":0.5842,"relative_risk":1.11,"threshold":0.5006,"high_threshold":0.6506},"lcx":{"probability":0.2588,"label":0,"risk_level":"low","cohort_prevalence":0.3927,"relative_risk":0.66,"threshold":0.3973,"high_threshold":0.5473},"rca":{"probability":0.1813,"label":0,"risk_level":"low","cohort_prevalence":0.3762,"relative_risk":0.48,"threshold":0.3354,"high_threshold":0.4854}},"coherence":{"is_incoherent":false,"raw_cad_probability":0.8591,"adjusted_cad_probability":0.8591,"max_vessel_probability":0.6488,"note":"Predictions anatomically coherent."},"imputed_features":[],"warnings":[],"api_version":"0.2.0","model_version":"0.2.0","disclaimer":"CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."}

@@ -1,0 +1,27 @@
+=== 1. Explainer settings in 7503c80:api/app/main.py ===
+    "shap_background": None,
+        bg_path = artifacts_dir / "shap_background_sample.csv"
+            STATE["shap_background"] = pd.read_csv(bg_path)
+                if STATE["shap_background"] is not None:
+                    bg_df = STATE["shap_background"]
+                    expl = shap.KernelExplainer(make_predict_fn(calibrated_model, feat_cols), bg_df)
+        np.random.seed(42)
+            sv = explainer.shap_values(df_patient, nsamples=150, silent=True)
+
+=== 2. Explainer settings at HEAD:api/app/main.py ===
+        f"using stratified KernelExplainer in probability points."
+    "shap_background": None,
+        bg_path = artifacts_dir / "shap_background_sample.csv"
+            STATE["shap_background"] = pd.read_csv(bg_path)
+                if STATE["shap_background"] is not None:
+                    bg_df = STATE["shap_background"]
+                    expl = shap.KernelExplainer(make_predict_fn(calibrated_model, feat_cols), bg_df)
+            np.random.seed(42)
+                sv = explainer.shap_values(df_patient, nsamples=150, silent=True)
+    bg_size = len(STATE["shap_background"]) if STATE.get("shap_background") is not None else 30
+        method="KernelExplainer",
+        nsamples=150,
+
+=== 3. Background sample size in 7503c80 vs HEAD ===
+7503c80 rows:       51
+HEAD rows:       31

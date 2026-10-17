@@ -1,0 +1,90 @@
+Comparing artifacts between base='9491341' and target='HEAD'
+================================================================================
+
+File: metrics.json
+Classification: B (numeric/content)
+Max Numeric Diff: 6.979999999999999
+Changed Paths Count: 538
+Changed Paths (sample up to 15):
+  - baseline_comparison_table (added in target)
+  - targets.y_cad.shap.all_features_shap.Age.mean_abs_raw_score (numeric diff: 0.04261 vs 0.04464)
+  - targets.y_cad.shap.all_features_shap.Age.relative_contribution_pct (numeric diff: 9.99 vs 10.82)
+  - targets.y_cad.shap.all_features_shap.Airway disease.mean_abs_raw_score (numeric diff: 0.0 vs 0.00072)
+  - targets.y_cad.shap.all_features_shap.Airway disease.relative_contribution_pct (numeric diff: 0.0 vs 0.18)
+  - targets.y_cad.shap.all_features_shap.Atypical.mean_abs_raw_score (numeric diff: 0.00791 vs 0.00811)
+  - targets.y_cad.shap.all_features_shap.BBB (added in target)
+  - targets.y_cad.shap.all_features_shap.BBB_N (removed in target)
+  - targets.y_cad.shap.all_features_shap.BBB_RBBB (removed in target)
+  - targets.y_cad.shap.all_features_shap.BMI.mean_abs_raw_score (numeric diff: 0.00844 vs 0.00841)
+  - targets.y_cad.shap.all_features_shap.BMI.relative_contribution_pct (numeric diff: 1.98 vs 2.49)
+  - targets.y_cad.shap.all_features_shap.BP.mean_abs_raw_score (numeric diff: 0.00738 vs 0.00784)
+  - targets.y_cad.shap.all_features_shap.BP.relative_contribution_pct (numeric diff: 1.8 vs 1.93)
+  - targets.y_cad.shap.all_features_shap.BUN.mean_abs_raw_score (numeric diff: 0.0 vs 0.00084)
+  - targets.y_cad.shap.all_features_shap.BUN.relative_contribution_pct (numeric diff: 0.0 vs 0.21)
+--------------------------------------------------------------------------------
+
+File: shap_global.json
+Classification: B (numeric/content)
+Max Numeric Diff: 6.979999999999999
+Changed Paths Count: 537
+Changed Paths (sample up to 15):
+  - y_cad.all_features_shap.Age.mean_abs_raw_score (numeric diff: 0.04261 vs 0.04464)
+  - y_cad.all_features_shap.Age.relative_contribution_pct (numeric diff: 9.99 vs 10.82)
+  - y_cad.all_features_shap.Airway disease.mean_abs_raw_score (numeric diff: 0.0 vs 0.00072)
+  - y_cad.all_features_shap.Airway disease.relative_contribution_pct (numeric diff: 0.0 vs 0.18)
+  - y_cad.all_features_shap.Atypical.mean_abs_raw_score (numeric diff: 0.00791 vs 0.00811)
+  - y_cad.all_features_shap.BBB (added in target)
+  - y_cad.all_features_shap.BBB_N (removed in target)
+  - y_cad.all_features_shap.BBB_RBBB (removed in target)
+  - y_cad.all_features_shap.BMI.mean_abs_raw_score (numeric diff: 0.00844 vs 0.00841)
+  - y_cad.all_features_shap.BMI.relative_contribution_pct (numeric diff: 1.98 vs 2.49)
+  - y_cad.all_features_shap.BP.mean_abs_raw_score (numeric diff: 0.00738 vs 0.00784)
+  - y_cad.all_features_shap.BP.relative_contribution_pct (numeric diff: 1.8 vs 1.93)
+  - y_cad.all_features_shap.BUN.mean_abs_raw_score (numeric diff: 0.0 vs 0.00084)
+  - y_cad.all_features_shap.BUN.relative_contribution_pct (numeric diff: 0.0 vs 0.21)
+  - y_cad.all_features_shap.CR.mean_abs_raw_score (numeric diff: 0.00079 vs 0.00225)
+--------------------------------------------------------------------------------
+
+File: shap_stability.json
+Classification: B (numeric/content)
+Max Numeric Diff: 0.0
+Changed Paths Count: 28
+Changed Paths (sample up to 15):
+  - y_cad.BBB (added in target)
+  - y_cad.BBB_N (removed in target)
+  - y_cad.BBB_RBBB (removed in target)
+  - y_cad.VHD (added in target)
+  - y_cad.VHD_N (removed in target)
+  - y_cad.VHD_Severe (removed in target)
+  - y_cad.VHD_mild (removed in target)
+  - y_lad.BBB (added in target)
+  - y_lad.BBB_N (removed in target)
+  - y_lad.BBB_RBBB (removed in target)
+  - y_lad.VHD (added in target)
+  - y_lad.VHD_N (removed in target)
+  - y_lad.VHD_Severe (removed in target)
+  - y_lad.VHD_mild (removed in target)
+  - y_lcx.BBB (added in target)
+--------------------------------------------------------------------------------
+
+File: shap_background_sample.csv
+Classification: B (numeric/content)
+Max Numeric Diff: 5500.0
+Changed Paths Count: 813
+Changed Paths (sample up to 15):
+  - row_count (rows 51 vs 31)
+  - row[1][0] (49 vs 60)
+  - row[1][1] (89 vs 65)
+  - row[1][2] (185 vs 160)
+  - row[1][3] ('Male' vs 'Fmale')
+  - row[1][4] (26.004382761139514 vs 25.390624999999996)
+  - row[1][7] (1 vs 0)
+  - row[1][16] ('Y' vs 'N')
+  - row[1][17] (130 vs 140)
+  - row[1][24] (0 vs 1)
+  - row[1][25] ('Y' vs 'N')
+  - row[1][26] (2 vs 0)
+  - row[1][27] ('Y' vs 'N')
+  - row[1][34] (0 vs 1)
+  - row[1][38] (90 vs 95)
+--------------------------------------------------------------------------------

@@ -1,0 +1,91 @@
+[
+  {
+    "key": "BP",
+    "label": "Systolic Blood Pressure (BP)",
+    "type": "slider",
+    "min": 90,
+    "max": 190,
+    "step": 1,
+    "unit": "mmHg",
+    "category": "vitals",
+    "modifiable": true
+  },
+  {
+    "key": "FBS",
+    "label": "Fasting Blood Sugar (FBS)",
+    "type": "slider",
+    "min": 62,
+    "max": 400,
+    "step": 1,
+    "unit": "mg/dL",
+    "category": "labs",
+    "modifiable": true
+  },
+  {
+    "key": "TG",
+    "label": "Triglycerides (TG)",
+    "type": "slider",
+    "min": 37,
+    "max": 1050,
+    "step": 1,
+    "unit": "mg/dL",
+    "category": "labs",
+    "modifiable": true
+  },
+  {
+    "key": "LDL",
+    "label": "Low-Density Lipoprotein (LDL)",
+    "type": "slider",
+    "min": 18,
+    "max": 232,
+    "step": 1,
+    "unit": "mg/dL",
+    "category": "labs",
+    "modifiable": true
+  },
+  {
+    "key": "HDL",
+    "label": "High-Density Lipoprotein (HDL)",
+    "type": "slider",
+    "min": 15.9,
+    "max": 111,
+    "step": 0.1,
+    "unit": "mg/dL",
+    "category": "labs",
+    "modifiable": true
+  },
+  {
+    "key": "Weight",
+    "label": "Body Weight",
+    "type": "slider",
+    "min": 48,
+    "max": 120,
+    "step": 1,
+    "unit": "kg",
+    "category": "demographics",
+    "modifiable": true
+  },
+  {
+    "key": "Current Smoker",
+    "label": "Current Smoker",
+    "type": "toggle",
+    "min": 0,
+    "max": 1,
+    "step": 1,
+    "unit": null,
+    "category": "history",
+    "modifiable": true
+  },
+  {
+    "key": "Age",
+    "label": "Age",
+    "type": "slider",
+    "min": 30,
+    "max": 86,
+    "step": 1,
+    "unit": "years",
+    "category": "demographics",
+    "modifiable": false,
+    "badge": "explore only (not modifiable)"
+  }
+]

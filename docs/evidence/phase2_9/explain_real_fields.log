@@ -1,0 +1,11 @@
+Top-level keys in /explain response:
+['targets', 'requested_targets', 'physiology', 'explainer', 'api_version', 'model_version', 'interpretation_note', 'disclaimer']
+
+Keys under targets.cad:
+['target', 'raw_unit', 'base_value', 'contributions']
+
+Keys under targets.lad:
+['target', 'raw_unit', 'base_value', 'contributions']
+
+Keys under explainer:
+['method', 'background_size', 'nsamples', 'unit', 'note', 'stability_note']

@@ -1,0 +1,27 @@
+Checking 6 joblib artifacts:
+model_y_cad.joblib:
+  orig:  701ef9eb9bff746126eddcb4c7d1b0f8412d280c70edad2589c02e5758564985
+  clone: 701ef9eb9bff746126eddcb4c7d1b0f8412d280c70edad2589c02e5758564985
+  match: True
+model_y_lad.joblib:
+  orig:  b43aa64df2b66cf9559e35db223edaa6795b895bca31072d88ad19b795418e5f
+  clone: b43aa64df2b66cf9559e35db223edaa6795b895bca31072d88ad19b795418e5f
+  match: True
+model_y_lcx.joblib:
+  orig:  a7a85d67db573d1e992137b4897d27d0cb1a44e259964f1ae150a57dcdbea741
+  clone: a7a85d67db573d1e992137b4897d27d0cb1a44e259964f1ae150a57dcdbea741
+  match: True
+model_y_rca.joblib:
+  orig:  a9e7e7e671a32081730a3756cbe5da4f9aa9b05c5d89920938838539a4db4f93
+  clone: a9e7e7e671a32081730a3756cbe5da4f9aa9b05c5d89920938838539a4db4f93
+  match: True
+shap_background_sample.joblib:
+  orig:  a35093c28c8aece87b0e4e6b4c98bbd7f7e3450226d3f74bc70806f87450f6f4
+  clone: a35093c28c8aece87b0e4e6b4c98bbd7f7e3450226d3f74bc70806f87450f6f4
+  match: True
+shap_reference_20_patients.joblib:
+  orig:  f005e85e0dba46601fa96776d43442d8ba67873f582e865a0d94bb35e59a3122
+  clone: f005e85e0dba46601fa96776d43442d8ba67873f582e865a0d94bb35e59a3122
+  match: True
+
+All joblib SHA256 match: True

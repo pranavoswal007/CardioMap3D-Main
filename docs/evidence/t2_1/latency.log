@@ -1,0 +1,55 @@
+================================================================
+What-If Mode Slider-to-Recolor Latency Benchmark
+Interaction count: >= 30, Debounce: 150 ms, Backend: http://127.0.0.1:8000
+================================================================
+
+Baseline patient loaded: sample_patient_3 (CAD: 25.9%)
+Configured factors: BP, FBS, TG, LDL, HDL, Weight, Current Smoker, Age
+
+--- Commencing Scripted Slider Interactions ---
+[Interaction  1/35] Factor: BP             = 90     -> debounced POST /predict (200 OK, CAD: 25.3%) -> recolor ready in 220.50 ms
+[Interaction  2/35] Factor: FBS            = 299    -> debounced POST /predict (200 OK, CAD: 39.8%) -> recolor ready in 209.09 ms
+[Interaction  3/35] Factor: TG             = 341    -> debounced POST /predict (200 OK, CAD: 68.9%) -> recolor ready in 217.67 ms
+[Interaction  4/35] Factor: LDL            = 232    -> debounced POST /predict (200 OK, CAD: 62.8%) -> recolor ready in 220.29 ms
+[Interaction  5/35] Factor: HDL            = 73     -> debounced POST /predict (200 OK, CAD: 64.7%) -> recolor ready in 220.58 ms
+[Interaction  6/35] Factor: Weight         = 62     -> debounced POST /predict (200 OK, CAD: 68.3%) -> recolor ready in 218.44 ms
+[Interaction  7/35] Factor: Current Smoker = 1      -> debounced POST /predict (200 OK, CAD: 71.5%) -> recolor ready in 225.07 ms
+[Interaction  8/35] Factor: Age            = 58     -> debounced POST /predict (200 OK, CAD: 55.1%) -> recolor ready in 225.50 ms
+[Interaction  9/35] Factor: BP             = 100    -> debounced POST /predict (200 OK, CAD: 57.1%) -> recolor ready in 225.58 ms
+[Interaction 10/35] Factor: FBS            = 332    -> debounced POST /predict (200 OK, CAD: 58.6%) -> recolor ready in 224.87 ms
+[Interaction 11/35] Factor: TG             = 442    -> debounced POST /predict (200 OK, CAD: 65.1%) -> recolor ready in 223.00 ms
+[Interaction 12/35] Factor: LDL            = 18     -> debounced POST /predict (200 OK, CAD: 70.1%) -> recolor ready in 222.98 ms
+[Interaction 13/35] Factor: HDL            = 82.5   -> debounced POST /predict (200 OK, CAD: 70.2%) -> recolor ready in 224.62 ms
+[Interaction 14/35] Factor: Weight         = 70     -> debounced POST /predict (200 OK, CAD: 67.3%) -> recolor ready in 224.22 ms
+[Interaction 15/35] Factor: Current Smoker = 0      -> debounced POST /predict (200 OK, CAD: 64.6%) -> recolor ready in 226.85 ms
+[Interaction 16/35] Factor: Age            = 64     -> debounced POST /predict (200 OK, CAD: 71.7%) -> recolor ready in 225.24 ms
+[Interaction 17/35] Factor: BP             = 110    -> debounced POST /predict (200 OK, CAD: 72.2%) -> recolor ready in 223.58 ms
+[Interaction 18/35] Factor: FBS            = 366    -> debounced POST /predict (200 OK, CAD: 72.5%) -> recolor ready in 225.82 ms
+[Interaction 19/35] Factor: TG             = 544    -> debounced POST /predict (200 OK, CAD: 73.7%) -> recolor ready in 225.85 ms
+[Interaction 20/35] Factor: LDL            = 39     -> debounced POST /predict (200 OK, CAD: 73.7%) -> recolor ready in 226.10 ms
+[Interaction 21/35] Factor: HDL            = 92     -> debounced POST /predict (200 OK, CAD: 73.7%) -> recolor ready in 229.42 ms
+[Interaction 22/35] Factor: Weight         = 77     -> debounced POST /predict (200 OK, CAD: 74.3%) -> recolor ready in 226.80 ms
+[Interaction 23/35] Factor: Current Smoker = 1      -> debounced POST /predict (200 OK, CAD: 76.5%) -> recolor ready in 224.63 ms
+[Interaction 24/35] Factor: Age            = 69     -> debounced POST /predict (200 OK, CAD: 82.6%) -> recolor ready in 223.84 ms
+[Interaction 25/35] Factor: BP             = 120    -> debounced POST /predict (200 OK, CAD: 86.3%) -> recolor ready in 294.20 ms
+[Interaction 26/35] Factor: FBS            = 400    -> debounced POST /predict (200 OK, CAD: 86.3%) -> recolor ready in 223.12 ms
+[Interaction 27/35] Factor: TG             = 645    -> debounced POST /predict (200 OK, CAD: 86.5%) -> recolor ready in 225.27 ms
+[Interaction 28/35] Factor: LDL            = 61     -> debounced POST /predict (200 OK, CAD: 86.6%) -> recolor ready in 223.96 ms
+[Interaction 29/35] Factor: HDL            = 101.5  -> debounced POST /predict (200 OK, CAD: 86.6%) -> recolor ready in 228.11 ms
+[Interaction 30/35] Factor: Weight         = 84     -> debounced POST /predict (200 OK, CAD: 85.3%) -> recolor ready in 225.98 ms
+[Interaction 31/35] Factor: Current Smoker = 0      -> debounced POST /predict (200 OK, CAD: 83.9%) -> recolor ready in 224.73 ms
+[Interaction 32/35] Factor: Age            = 75     -> debounced POST /predict (200 OK, CAD: 84.8%) -> recolor ready in 223.69 ms
+[Interaction 33/35] Factor: BP             = 130    -> debounced POST /predict (200 OK, CAD: 85.0%) -> recolor ready in 224.82 ms
+[Interaction 34/35] Factor: FBS            = 62     -> debounced POST /predict (200 OK, CAD: 80.7%) -> recolor ready in 225.00 ms
+[Interaction 35/35] Factor: TG             = 746    -> debounced POST /predict (200 OK, CAD: 81.1%) -> recolor ready in 226.11 ms
+
+================================================================
+LATENCY BENCHMARK RESULTS
+================================================================
+Interactions Tested : 35
+p50 Latency         : 224.82 ms
+p95 Latency         : 229.42 ms
+Min Latency         : 209.09 ms
+Max Latency         : 294.20 ms
+Mean Latency        : 225.87 ms
+================================================================

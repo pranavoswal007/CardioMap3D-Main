@@ -1,0 +1,2 @@
+This work is based on "Cardiac Anatomy: Coronary arteries of the heart" (https://sketchfab.com/3d-models/cardiac-anatomy-coronary-arteries-of-the-heart-00b5f4ec0b984325b453f8df07cd0cb5) by HannahNewey (https://sketchfab.com/HannahNewey) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+Changes: mesh welded, decimated and compressed for web use (glTF-Transform). This adapted file is distributed under the same license, CC-BY-NC-SA-4.0. Non-commercial use only.

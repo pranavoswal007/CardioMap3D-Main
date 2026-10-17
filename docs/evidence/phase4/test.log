@@ -1,0 +1,14 @@
+
+> web@0.0.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/pranavoswal/Projects/cardiomap3d/web
+
+ ✓ src/test/phase4.test.tsx (11 tests) 88ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  18:16:26
+   Duration  687ms (transform 45ms, setup 37ms, collect 145ms, tests 88ms, environment 235ms, prepare 49ms)
+

@@ -1,0 +1,25 @@
+  File "<string>", line 10
+    lines.append(f"Title: {spec.get(\"info\", {}).get(\"title\")}")
+                                                                  ^
+SyntaxError: f-string expression part cannot include a backslash
+contract.log written successfully. Summary of lines: 28
+=== PREFLIGHT CONTRACT: api/openapi.json ===
+Title: CardioMap 3D API
+Version: 0.2.0
+Description (Disclaimer):
+CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment.
+
+=== ENDPOINTS ===
+POST /explain -> Explain Stenosis Prediction
+GET /health -> Health Check
+GET /metrics -> Get Metrics Report
+GET /patients/samples -> Get Sample Patients
+POST /predict -> Predict Stenosis Risk
+GET /schema -> Get Schema
+
+=== SCHEMAS ===
+Schema CutoffThreshold: properties=['operating_threshold', 'threshold', 'moderate_min', 'high_min', 'high_threshold', 'cohort_prevalence']
+Schema ExplainResponse: properties=['targets', 'requested_targets', 'physiology', 'explainer', 'api_version', 'model_version', 'interpretation_note', 'disclaimer']
+Schema ExplainerMetadata: properties=['method', 'background_size', 'nsamples', 'unit', 'note', 'stability_note']
+Schema FeatureExplanation: properties=['feature', 'display_label', 'patient_value', 'shap_value', 'relative_contribution_pct', 'direction', 'stability_label']
+Schema HTTPValidationError: properties=['detail']

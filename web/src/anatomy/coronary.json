@@ -1,0 +1,144 @@
+{
+  "version": "1.0.0",
+  "traced": true,
+  "comment": "Config-driven anatomical coronary artery spline geometries for 3D visualization. Territory descriptions follow standard clinical cardiac anatomy without reference to clinical dataset indices.",
+  "vessels": [
+    {
+      "id": "lad",
+      "displayName": "Left Anterior Descending",
+      "shortName": "LAD",
+      "description": "Courses along the anterior interventricular sulcus to the apex. Supplies the anterior myocardial wall of the left ventricle and anterior two-thirds of the interventricular septum.",
+      "radius": 0.055,
+      "cameraFocus": [
+        0.1,
+        0.1,
+        1.8
+      ],
+      "points": [
+        [
+          0.007,
+          0.308,
+          0.141
+        ],
+        [
+          0.049,
+          0.163,
+          0.201
+        ],
+        [
+          0.078,
+          0.111,
+          0.453
+        ],
+        [
+          0.042,
+          -0.19,
+          0.65
+        ],
+        [
+          -0.03,
+          -0.408,
+          0.367
+        ],
+        [
+          -0.023,
+          -0.434,
+          0.159
+        ]
+      ]
+    },
+    {
+      "id": "lcx",
+      "displayName": "Left Circumflex Artery",
+      "shortName": "LCX",
+      "description": "Travels along the left atrioventricular groove toward the lateral and posterior myocardium. Supplies the posterolateral left ventricular free wall and left atrial tissue.",
+      "radius": 0.05,
+      "cameraFocus": [
+        -1.2,
+        0.1,
+        0.4
+      ],
+      "points": [
+        [
+          0.007,
+          0.308,
+          0.141
+        ],
+        [
+          -0.103,
+          0.208,
+          0.127
+        ],
+        [
+          -0.184,
+          0.127,
+          0.067
+        ],
+        [
+          -0.181,
+          0.046,
+          -0.009
+        ],
+        [
+          -0.106,
+          0.004,
+          -0.044
+        ],
+        [
+          -0.144,
+          -0.13,
+          -0.122
+        ]
+      ]
+    },
+    {
+      "id": "rca",
+      "displayName": "Right Coronary Artery",
+      "shortName": "RCA",
+      "description": "Descends within the right atrioventricular sulcus around the acute cardiac margin to the posterior crux. Supplies the right ventricle, inferior left ventricular myocardium, and sinus/AV nodes.",
+      "radius": 0.052,
+      "cameraFocus": [
+        1.2,
+        0.1,
+        0.4
+      ],
+      "points": [
+        [
+          0.007,
+          0.308,
+          0.141
+        ],
+        [
+          0.177,
+          0.264,
+          0.111
+        ],
+        [
+          0.332,
+          0.186,
+          0.095
+        ],
+        [
+          0.381,
+          0.016,
+          0.05
+        ],
+        [
+          0.259,
+          -0.185,
+          -0.056
+        ],
+        [
+          0.099,
+          -0.181,
+          -0.119
+        ],
+        [
+          0.006,
+          -0.187,
+          -0.111
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+api/app/config.py:12:    app_version: str = "0.2.0"
+api/app/main.py:231:    version=settings.app_version,
+api/app/main.py:269:        model_version=settings.app_version,
+api/app/main.py:442:        model_version=settings.app_version,
+api/app/main.py:577:        model_version=settings.app_version,
+api/app/schemas.py:13:    model_version: str
+api/app/schemas.py:57:    model_version: str
+api/app/schemas.py:113:    model_version: str
+api/tests/test_api.py:4:1. /health endpoint: returns status, model_version, artifacts_ready=True, disclaimer
+api/tests/test_api.py:62:    assert "model_version" in data
+docs/evidence/phase2_6/sample_explain_response.json:491:  "model_version": "0.2.0",
+docs/evidence/phase2_6/sample_predict_response.json:97:  "model_version": "0.2.0",

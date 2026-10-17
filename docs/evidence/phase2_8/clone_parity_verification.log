@@ -1,0 +1,26 @@
+=== CARDIO MAP 3D: CLONE VS ORIGINAL PARITY AUDIT ===
+Loaded sample patient 'sample_patient_3' (Age=66, EF-TTE=55)
+
+--- 1. Testing /predict parity ---
+API Output Precision: API schemas explicitly format probabilities with round(p, 4) (precision 1e-4).
+PASS: /predict responses are IDENTICAL across all fields.
+Sample predict target probabilities:
+  CAD: orig=0.2594, clone=0.2594, diff=0.0
+  LAD: orig=0.1843, clone=0.1843, diff=0.0
+  LCX: orig=0.3043, clone=0.3043, diff=0.0
+  RCA: orig=0.4918, clone=0.4918, diff=0.0
+
+--- 2. Testing /schema parity ---
+PASS: /schema responses are 100% IDENTICAL.
+
+--- 3. Testing /metrics parity ---
+PASS: /metrics responses are 100% IDENTICAL.
+
+--- 4. Checking SHA256 of all tracked joblib artifacts ---
+  model_y_cad.joblib: sha256=701ef9eb9bff746126eddcb4c7d1b0f8412d280c70edad2589c02e5758564985 match=True
+  model_y_lad.joblib: sha256=b43aa64df2b66cf9559e35db223edaa6795b895bca31072d88ad19b795418e5f match=True
+  model_y_lcx.joblib: sha256=a7a85d67db573d1e992137b4897d27d0cb1a44e259964f1ae150a57dcdbea741 match=True
+  model_y_rca.joblib: sha256=a9e7e7e671a32081730a3756cbe5da4f9aa9b05c5d89920938838539a4db4f93 match=True
+  shap_background_sample.joblib: sha256=a35093c28c8aece87b0e4e6b4c98bbd7f7e3450226d3f74bc70806f87450f6f4 match=True
+  shap_reference_20_patients.joblib: sha256=f005e85e0dba46601fa96776d43442d8ba67873f582e865a0d94bb35e59a3122 match=True
+PASS: All 6 joblib artifact SHA256 hashes match bit-for-bit.

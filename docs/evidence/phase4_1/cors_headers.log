@@ -1,0 +1,77 @@
+=== GET /health [Origin: http://localhost:5173] ===
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 13:42:20 GMT
+server: uvicorn
+content-length: 376
+content-type: application/json
+access-control-allow-origin: http://localhost:5173
+access-control-allow-credentials: true
+vary: Origin
+
+{"status":"ok","app_name":"CardioMap 3D API","api_version":"0.2.0","model_version":"0.2.0","artifact_hash":"2afac8b653b8397b","artifacts_ready":true,"disclaimer":"CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."}
+=== GET /health [Origin: http://127.0.0.1:5173] ===
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 13:42:20 GMT
+server: uvicorn
+content-length: 376
+content-type: application/json
+access-control-allow-origin: http://127.0.0.1:5173
+access-control-allow-credentials: true
+vary: Origin
+
+{"status":"ok","app_name":"CardioMap 3D API","api_version":"0.2.0","model_version":"0.2.0","artifact_hash":"2afac8b653b8397b","artifacts_ready":true,"disclaimer":"CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."}
+=== OPTIONS /predict [Origin: http://localhost:5173] ===
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 13:42:20 GMT
+server: uvicorn
+vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network
+access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, QUERY
+access-control-max-age: 600
+access-control-allow-credentials: true
+access-control-allow-origin: http://localhost:5173
+access-control-allow-headers: content-type
+content-length: 2
+content-type: text/plain; charset=utf-8
+
+
+=== OPTIONS /predict [Origin: http://127.0.0.1:5173] ===
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 13:42:20 GMT
+server: uvicorn
+vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network
+access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, QUERY
+access-control-max-age: 600
+access-control-allow-credentials: true
+access-control-allow-origin: http://127.0.0.1:5173
+access-control-allow-headers: content-type
+content-length: 2
+content-type: text/plain; charset=utf-8
+
+
+=== OPTIONS /explain [Origin: http://localhost:5173] ===
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 13:42:20 GMT
+server: uvicorn
+vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network
+access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, QUERY
+access-control-max-age: 600
+access-control-allow-credentials: true
+access-control-allow-origin: http://localhost:5173
+access-control-allow-headers: content-type
+content-length: 2
+content-type: text/plain; charset=utf-8
+
+
+=== OPTIONS /explain [Origin: http://127.0.0.1:5173] ===
+HTTP/1.1 200 OK
+date: Tue, 13 Oct 2026 13:42:20 GMT
+server: uvicorn
+vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Request-Private-Network
+access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, QUERY
+access-control-max-age: 600
+access-control-allow-credentials: true
+access-control-allow-origin: http://127.0.0.1:5173
+access-control-allow-headers: content-type
+content-length: 2
+content-type: text/plain; charset=utf-8
+

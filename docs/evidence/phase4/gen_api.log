@@ -1,0 +1,8 @@
+✨ openapi-typescript 7.13.0
+🚀 ../api/openapi.json → src/api/schema.d.ts [27.2ms]
+
+> web@0.0.0 gen:api
+> openapi-typescript ../api/openapi.json -o src/api/schema.d.ts
+
+✨ openapi-typescript 7.13.0
+🚀 ../api/openapi.json → src/api/schema.d.ts [24.9ms]

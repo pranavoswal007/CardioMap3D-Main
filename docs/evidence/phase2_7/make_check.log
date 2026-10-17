@@ -1,0 +1,144 @@
+==> Linting Python code with Ruff...
+.venv/bin/ruff check .
+All checks passed!
+==> Type checking Python code with Mypy...
+.venv/bin/mypy ml api
+Success: no issues found in 14 source files
+==> Linting Web frontend...
+cd web && npm run lint
+
+> web@0.0.0 lint
+> oxlint
+
+Found 0 warnings and 0 errors.
+Finished in 20ms on 15 files with 116 rules using 10 threads.
+==> Type checking TypeScript frontend...
+cd web && npm run type-check
+
+> web@0.0.0 type-check
+> tsc -b
+
+==> Building web frontend...
+cd web && npm run build
+
+> web@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 2468 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               1.05 kB │ gzip:   0.53 kB
+dist/assets/index-Crkis-r1.css               19.76 kB │ gzip:   4.60 kB
+dist/assets/rolldown-runtime-hePW80VL.js      0.71 kB │ gzip:   0.42 kB
+dist/assets/HeartViewer-BheXYpbD.js          24.02 kB │ gzip:   7.15 kB
+dist/assets/index-EmWauFvJ.js               223.85 kB │ gzip:  70.12 kB
+dist/assets/three-drei-6uaR-507.js        1,010.29 kB │ gzip: 271.09 kB
+
+✓ built in 397ms
+==> Running test suite...
+.venv/bin/pytest
+============================= test session starts ==============================
+platform darwin -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /Users/pranavoswal/Projects/cardiomap3d/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/pranavoswal/Projects/cardiomap3d
+configfile: pyproject.toml
+testpaths: ml/tests, api/tests
+plugins: anyio-4.15.1
+collecting ... collected 73 items
+
+ml/tests/test_leakage.py::test_empty_feature_list_passes PASSED          [  1%]
+ml/tests/test_leakage.py::test_clean_features_pass PASSED                [  2%]
+ml/tests/test_leakage.py::test_substring_features_accepted PASSED        [  4%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[Cath] PASSED [  5%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[cath] PASSED [  6%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[CATH] PASSED [  8%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[LAD] PASSED [  9%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[lad] PASSED [ 10%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[LCX] PASSED [ 12%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[lcx] PASSED [ 13%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[RCA] PASSED [ 15%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[rca] PASSED [ 16%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[CAD] PASSED [ 17%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[cad] PASSED [ 19%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[  LAD  ] PASSED [ 20%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[ cath\t] PASSED [ 21%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[ \nRCA ] PASSED [ 23%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[  cad  ] PASSED [ 24%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[ lcx ] PASSED [ 26%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[L_A_D] PASSED [ 27%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[l_a_d] PASSED [ 28%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[L-A-D] PASSED [ 30%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[l-a-d] PASSED [ 31%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[l a d] PASSED [ 32%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[L C X] PASSED [ 34%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[l_c_x] PASSED [ 35%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[l-c-x] PASSED [ 36%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[R_C_A] PASSED [ 38%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[r-c-a] PASSED [ 39%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[r c a] PASSED [ 41%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[C_A_T_H] PASSED [ 42%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[c-a-t-h] PASSED [ 43%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[c a t h] PASSED [ 45%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[C_A_D] PASSED [ 46%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[c-a-d] PASSED [ 47%]
+ml/tests/test_leakage.py::test_target_leakage_raises_assertion_error[c a d] PASSED [ 49%]
+ml/tests/test_leakage.py::test_forbidden_target_names_constant PASSED    [ 50%]
+ml/tests/test_leakage.py::test_annotated_target_headers_rejected[LAD (Target)] PASSED [ 52%]
+ml/tests/test_leakage.py::test_annotated_target_headers_rejected[Cath (Target / Overall CAD outcome)] PASSED [ 53%]
+ml/tests/test_leakage.py::test_annotated_target_headers_rejected[LCX (Target vessel)] PASSED [ 54%]
+ml/tests/test_leakage.py::test_annotated_target_headers_rejected[RCA (stenosis outcome)] PASSED [ 56%]
+ml/tests/test_leakage.py::test_annotated_target_headers_rejected[CAD (binary outcome)] PASSED [ 57%]
+ml/tests/test_pipeline.py::test_hard_invariant_exactly_55_features PASSED [ 58%]
+ml/tests/test_pipeline.py::test_target_consistency_invariants PASSED     [ 60%]
+ml/tests/test_pipeline.py::test_pipeline_fits_and_predicts_on_toy_batch PASSED [ 61%]
+ml/tests/test_pipeline.py::test_saved_artifacts_reload_and_reproduce_predictions PASSED [ 63%]
+ml/tests/test_pipeline.py::test_calibration_clipping_bounds PASSED       [ 64%]
+ml/tests/test_pipeline.py::test_evaluated_matches_deployed_cad_ensemble PASSED [ 65%]
+ml/tests/test_pipeline.py::test_shap_additivity_in_probability_points_on_deployed_models PASSED [ 67%]
+ml/tests/test_pipeline.py::test_model_agnostic_shap_determinism PASSED   [ 68%]
+ml/tests/test_pipeline.py::test_model_agnostic_shap_accuracy_vs_reference PASSED [ 69%]
+ml/tests/test_pipeline.py::test_model_agnostic_shap_age_perturbation_stability PASSED [ 71%]
+ml/tests/test_pipeline.py::test_feature_schema_completeness PASSED       [ 72%]
+ml/tests/test_pipeline.py::test_baseline_comparison_table_integrity PASSED [ 73%]
+ml/tests/test_pipeline.py::test_verify_artifacts_consistency PASSED      [ 75%]
+api/tests/test_api.py::test_health_endpoint PASSED                       [ 76%]
+api/tests/test_api.py::test_schema_endpoint PASSED                       [ 78%]
+api/tests/test_api.py::test_predict_full_features PASSED                 [ 79%]
+api/tests/test_api.py::test_risk_level_rule_consistency PASSED           [ 80%]
+api/tests/test_api.py::test_forbidden_columns_rejected PASSED            [ 82%]
+api/tests/test_api.py::test_unknown_fields_rejected PASSED               [ 83%]
+api/tests/test_api.py::test_probabilities_never_exact_zero_or_one PASSED [ 84%]
+api/tests/test_api.py::test_coherence_flag_logic PASSED                  [ 86%]
+api/tests/test_api.py::test_explain_endpoint PASSED                      [ 87%]
+api/tests/test_api.py::test_explain_endpoint_determinism_and_cache PASSED [ 89%]
+api/tests/test_api.py::test_metrics_endpoint PASSED                      [ 90%]
+api/tests/test_api.py::test_sample_patients_endpoint PASSED              [ 91%]
+api/tests/test_api.py::test_static_plots_served PASSED                   [ 93%]
+api/tests/test_api.py::test_parity_between_api_and_offline_pipeline PASSED [ 94%]
+api/tests/test_api.py::test_openapi_schema_has_threshold_and_explainer PASSED [ 95%]
+api/tests/test_api.py::test_disclaimer_canonical_content PASSED          [ 97%]
+api/tests/test_api.py::test_explain_targets_parameter_subset PASSED      [ 98%]
+api/tests/test_api.py::test_explain_cache_and_determinism_per_target PASSED [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/shap/plots/colors/_colors.py:47
+  /Users/pranavoswal/Projects/cardiomap3d/.venv/lib/python3.11/site-packages/shap/plots/colors/_colors.py:47: PendingDeprecationWarning: The set_bad function will be deprecated in a future version. Use cmap.with_extremes(bad=...) or Colormap(bad=...) instead.
+    red_blue.set_bad(gray_rgb.tolist(), 1.0)
+
+.venv/lib/python3.11/site-packages/shap/plots/colors/_colors.py:48
+  /Users/pranavoswal/Projects/cardiomap3d/.venv/lib/python3.11/site-packages/shap/plots/colors/_colors.py:48: PendingDeprecationWarning: The set_over function will be deprecated in a future version. Use cmap.with_extremes(over=...) or Colormap(over=...) instead.
+    red_blue.set_over(gray_rgb.tolist(), 1.0)
+
+.venv/lib/python3.11/site-packages/shap/plots/colors/_colors.py:49
+  /Users/pranavoswal/Projects/cardiomap3d/.venv/lib/python3.11/site-packages/shap/plots/colors/_colors.py:49: PendingDeprecationWarning: The set_under function will be deprecated in a future version. Use cmap.with_extremes(under=...) or Colormap(under=...) instead.
+    red_blue.set_under(gray_rgb.tolist(), 1.0)  # "under" is incorrectly used instead of "bad" in the scatter plot
+
+.venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+  /Users/pranavoswal/Projects/cardiomap3d/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 73 passed, 4 warnings in 34.71s ========================
+==> All checks passed successfully!

@@ -1,0 +1,5 @@
+
+> web@0.0.0 check:api
+> node scripts/check-api.js
+
+✓ src/api/schema.d.ts is up-to-date with api/openapi.json.

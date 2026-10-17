@@ -1,0 +1,42 @@
+Comparing artifacts between base='/Users/pranavoswal/Projects/cardiomap3d' and target='/tmp/cardiomap_scratch_train'
+================================================================================
+
+File: metrics.json
+Classification: B (numeric/content)
+Max Numeric Diff: 0.9400000000000004
+Changed Paths Count: 27
+Changed Paths (sample up to 15):
+  - targets.y_cad.candidate_models.ElasticNet_LR.training_time_seconds (numeric diff: 0.61 vs 0.59)
+  - targets.y_cad.candidate_models.LightGBM.training_time_seconds (numeric diff: 0.95 vs 0.92)
+  - targets.y_cad.candidate_models.LogisticRegression.training_time_seconds (numeric diff: 0.78 vs 0.64)
+  - targets.y_cad.candidate_models.RF_Shallow.training_time_seconds (numeric diff: 1.91 vs 1.81)
+  - targets.y_cad.candidate_models.RandomForest.training_time_seconds (numeric diff: 1.88 vs 1.8)
+  - targets.y_cad.candidate_models.SoftVotingEnsemble.training_time_seconds (numeric diff: 4.47 vs 4.33)
+  - targets.y_lad.candidate_models.ElasticNet_LR.training_time_seconds (numeric diff: 0.57 vs 0.55)
+  - targets.y_lad.candidate_models.LGBM_Shallow.training_time_seconds (numeric diff: 0.65 vs 0.63)
+  - targets.y_lad.candidate_models.LightGBM.training_time_seconds (numeric diff: 0.95 vs 0.93)
+  - targets.y_lad.candidate_models.LogisticRegression.training_time_seconds (numeric diff: 0.73 vs 0.74)
+  - targets.y_lad.candidate_models.RF_Shallow.training_time_seconds (numeric diff: 1.86 vs 1.8)
+  - targets.y_lad.candidate_models.RandomForest.training_time_seconds (numeric diff: 1.87 vs 1.81)
+  - targets.y_lad.candidate_models.SoftVotingEnsemble.training_time_seconds (numeric diff: 4.55 vs 5.49)
+  - targets.y_lcx.candidate_models.ElasticNet_LR.training_time_seconds (numeric diff: 0.57 vs 0.55)
+  - targets.y_lcx.candidate_models.LGBM_Shallow.training_time_seconds (numeric diff: 0.65 vs 0.62)
+--------------------------------------------------------------------------------
+
+File: shap_global.json
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------
+
+File: shap_stability.json
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------
+
+File: shap_background_sample.csv
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------

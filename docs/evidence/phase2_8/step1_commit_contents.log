@@ -1,0 +1,99 @@
+=== 1. git show --stat --format=fuller 10439d1 ===
+commit 10439d19b8c6a1a064dda112912c6303f018c232
+Author:     Pranav Oswal <pranavoswal@users.noreply.github.com>
+AuthorDate: Tue Oct 13 15:03:24 2026 +0530
+Commit:     Pranav Oswal <pranavoswal@users.noreply.github.com>
+CommitDate: Tue Oct 13 15:05:38 2026 +0530
+
+    Phase 2.7: disclaimer, targets param, tracked artifacts, fresh-clone check
+
+ .gitignore                                        |    1 -
+ Makefile                                          |    6 +-
+ api/app/config.py                                 |   16 +-
+ api/app/main.py                                   |   65 +-
+ api/app/schemas.py                                |   18 +-
+ api/tests/test_api.py                             |   68 +-
+ artifacts/metrics.json                            | 1516 ++--
+ artifacts/model_y_cad.joblib                      |  Bin 0 -> 3386816 bytes
+ artifacts/model_y_lad.joblib                      |  Bin 0 -> 2721552 bytes
+ artifacts/model_y_lcx.joblib                      |  Bin 0 -> 633216 bytes
+ artifacts/model_y_rca.joblib                      |  Bin 0 -> 339008 bytes
+ artifacts/shap_background_sample.csv              |   78 +-
+ artifacts/shap_background_sample.joblib           |  Bin 0 -> 16974 bytes
+ artifacts/shap_global.json                        | 1416 ++--
+ artifacts/shap_reference_20_patients.joblib       |  Bin 0 -> 18891 bytes
+ artifacts/shap_stability.json                     |  806 +-
+ docs/ARTIFACTS.md                                 |   66 +
+ docs/evidence/phase2_7/artifact_sizes.log         |   17 +
+ docs/evidence/phase2_7/artifacts_diff_stat.log    |    5 +
+ docs/evidence/phase2_7/disclaimer_codebase.log    |   12 +
+ docs/evidence/phase2_7/disclaimer_occurrences.log |   13 +
+ docs/evidence/phase2_7/explain_benchmark.log      | 8284 +++++++++++++++++++++
+ docs/evidence/phase2_7/fresh_clone_test.log       |  229 +
+ docs/evidence/phase2_7/joblib_files.log           |    7 +
+ docs/evidence/phase2_7/make_check.log             |  144 +
+ docs/evidence/phase2_7/run_benchmark.py           |   63 +
+ docs/evidence/phase2_7/verify_artifacts.log       |   11 +
+ docs/evidence/phase2_7/version_instances.log      |   12 +
+ docs/evidence/phase2_7/version_occurrences.log    |  315 +
+ docs/model_card.md                                |    3 +-
+ ml/src/cardiomap_ml/verify_artifacts.py           |  155 +
+ ml/tests/test_pipeline.py                         |    8 +
+ 32 files changed, 11350 insertions(+), 1984 deletions(-)
+
+=== 2. git ls-files artifacts docs/evidence data ===
+artifacts/.gitkeep
+artifacts/curves_y_cad.png
+artifacts/curves_y_lad.png
+artifacts/curves_y_lcx.png
+artifacts/curves_y_rca.png
+artifacts/feature_schema.json
+artifacts/metrics.json
+artifacts/model_y_cad.joblib
+artifacts/model_y_lad.joblib
+artifacts/model_y_lcx.joblib
+artifacts/model_y_rca.joblib
+artifacts/shap_background_sample.csv
+artifacts/shap_background_sample.joblib
+artifacts/shap_global.json
+artifacts/shap_reference_20_patients.joblib
+artifacts/shap_stability.json
+artifacts/thresholds.json
+data/README.md
+data/processed/.gitkeep
+data/raw/.gitkeep
+data/raw/z_alizadeh_sani_extension.xlsx
+docs/evidence/phase2_5/benchmark_distinct_patients.log
+docs/evidence/phase2_5/fidelity_reference_20_patients.log
+docs/evidence/phase2_5/make_check.log
+docs/evidence/phase2_5/regenerate_shap_global.log
+docs/evidence/phase2_5/tree_explainer_top5_agreement.log
+docs/evidence/phase2_6/generate_metrics_table.log
+docs/evidence/phase2_6/make_check.log
+docs/evidence/phase2_6/sample_explain_response.json
+docs/evidence/phase2_6/sample_predict_response.json
+docs/evidence/phase2_6/sample_schema_response.json
+docs/evidence/phase2_7/artifact_sizes.log
+docs/evidence/phase2_7/artifacts_diff_stat.log
+docs/evidence/phase2_7/disclaimer_codebase.log
+docs/evidence/phase2_7/disclaimer_occurrences.log
+docs/evidence/phase2_7/explain_benchmark.log
+docs/evidence/phase2_7/fresh_clone_test.log
+docs/evidence/phase2_7/joblib_files.log
+docs/evidence/phase2_7/make_check.log
+docs/evidence/phase2_7/run_benchmark.py
+docs/evidence/phase2_7/verify_artifacts.log
+docs/evidence/phase2_7/version_instances.log
+docs/evidence/phase2_7/version_occurrences.log
+docs/evidence/phase3/build.log
+docs/evidence/phase3/initial_build.log
+docs/evidence/phase3/lint.log
+docs/evidence/phase3/make_check.log
+docs/evidence/phase3/typecheck.log
+docs/evidence/phase3/web_build.log
+docs/evidence/phase3/web_typecheck.log
+
+=== 3. git check-ignore -v for runtime/test files ===
+
+=== 4. Tracking status of data/raw/z_alizadeh_sani_extension.xlsx ===
+data/raw/z_alizadeh_sani_extension.xlsx

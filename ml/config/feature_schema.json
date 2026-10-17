@@ -1,0 +1,716 @@
+{
+  "Age": {
+    "name": "Age",
+    "display_label": "Age",
+    "type": "numeric",
+    "unit": "years",
+    "group": "demographics",
+    "min": 30.0,
+    "max": 86.0,
+    "default": 58.0,
+    "allowed_values": null
+  },
+  "Weight": {
+    "name": "Weight",
+    "display_label": "Body Weight",
+    "type": "numeric",
+    "unit": "kg",
+    "group": "demographics",
+    "min": 48.0,
+    "max": 120.0,
+    "default": 74.0,
+    "allowed_values": null
+  },
+  "Length": {
+    "name": "Length",
+    "display_label": "Height / Length",
+    "type": "numeric",
+    "unit": "cm",
+    "group": "demographics",
+    "min": 140.0,
+    "max": 188.0,
+    "default": 165.0,
+    "allowed_values": null
+  },
+  "Sex": {
+    "name": "Sex",
+    "display_label": "Biological Sex",
+    "type": "binary",
+    "unit": null,
+    "group": "demographics",
+    "min": null,
+    "max": null,
+    "default": "Male",
+    "allowed_values": [
+      "Fmale",
+      "Male"
+    ]
+  },
+  "BMI": {
+    "name": "BMI",
+    "display_label": "Body Mass Index (BMI)",
+    "type": "numeric",
+    "unit": "kg/m\u00b2",
+    "group": "demographics",
+    "min": 18.115412710007302,
+    "max": 40.90065778377467,
+    "default": 26.775510204081634,
+    "allowed_values": null
+  },
+  "DM": {
+    "name": "DM",
+    "display_label": "Diabetes Mellitus (DM)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "HTN": {
+    "name": "HTN",
+    "display_label": "Hypertension (HTN)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 1,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "Current Smoker": {
+    "name": "Current Smoker",
+    "display_label": "Current Smoker",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "EX-Smoker": {
+    "name": "EX-Smoker",
+    "display_label": "Ex-Smoker",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "FH": {
+    "name": "FH",
+    "display_label": "Family History of CAD (FH)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "Obesity": {
+    "name": "Obesity",
+    "display_label": "Obesity (BMI >= 30)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "Y",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "CRF": {
+    "name": "CRF",
+    "display_label": "Chronic Renal Failure (CRF)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "CVA": {
+    "name": "CVA",
+    "display_label": "Cerebrovascular Accident / Stroke (CVA)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Airway disease": {
+    "name": "Airway disease",
+    "display_label": "Chronic Airway Disease",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Thyroid Disease": {
+    "name": "Thyroid Disease",
+    "display_label": "Thyroid Disease",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "CHF": {
+    "name": "CHF",
+    "display_label": "Congestive Heart Failure (CHF)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "DLP": {
+    "name": "DLP",
+    "display_label": "Dyslipidemia (DLP)",
+    "type": "binary",
+    "unit": null,
+    "group": "history",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "BP": {
+    "name": "BP",
+    "display_label": "Systolic Blood Pressure (BP)",
+    "type": "numeric",
+    "unit": "mmHg",
+    "group": "vitals",
+    "min": 90.0,
+    "max": 190.0,
+    "default": 130.0,
+    "allowed_values": null
+  },
+  "PR": {
+    "name": "PR",
+    "display_label": "Pulse Rate (PR)",
+    "type": "numeric",
+    "unit": "bpm",
+    "group": "vitals",
+    "min": 50.0,
+    "max": 110.0,
+    "default": 70.0,
+    "allowed_values": null
+  },
+  "Edema": {
+    "name": "Edema",
+    "display_label": "Peripheral Edema",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "Weak Peripheral Pulse": {
+    "name": "Weak Peripheral Pulse",
+    "display_label": "Weak Peripheral Pulse",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Lung rales": {
+    "name": "Lung rales",
+    "display_label": "Pulmonary Rales (Crackles)",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Systolic Murmur": {
+    "name": "Systolic Murmur",
+    "display_label": "Systolic Heart Murmur",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Diastolic Murmur": {
+    "name": "Diastolic Murmur",
+    "display_label": "Diastolic Heart Murmur",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Typical Chest Pain": {
+    "name": "Typical Chest Pain",
+    "display_label": "Typical Anginal Chest Pain",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 1,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "Dyspnea": {
+    "name": "Dyspnea",
+    "display_label": "Exertional Dyspnea",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Function Class": {
+    "name": "Function Class",
+    "display_label": "NYHA Functional Class",
+    "type": "ordinal",
+    "unit": "class (0-3)",
+    "group": "symptoms",
+    "min": 0.0,
+    "max": 3.0,
+    "default": 0.0,
+    "allowed_values": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "Atypical": {
+    "name": "Atypical",
+    "display_label": "Atypical Chest Pain",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Nonanginal": {
+    "name": "Nonanginal",
+    "display_label": "Non-Anginal Chest Pain",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Exertional CP": {
+    "name": "Exertional CP",
+    "display_label": "Exertional Chest Pain",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N"
+    ]
+  },
+  "LowTH Ang": {
+    "name": "LowTH Ang",
+    "display_label": "Low Threshold Angina",
+    "type": "binary",
+    "unit": null,
+    "group": "symptoms",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Q Wave": {
+    "name": "Q Wave",
+    "display_label": "Pathologic Q Wave on ECG",
+    "type": "binary",
+    "unit": null,
+    "group": "ecg",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "St Elevation": {
+    "name": "St Elevation",
+    "display_label": "ST-Segment Elevation",
+    "type": "binary",
+    "unit": null,
+    "group": "ecg",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "St Depression": {
+    "name": "St Depression",
+    "display_label": "ST-Segment Depression",
+    "type": "binary",
+    "unit": null,
+    "group": "ecg",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "Tinversion": {
+    "name": "Tinversion",
+    "display_label": "T-Wave Inversion",
+    "type": "binary",
+    "unit": null,
+    "group": "ecg",
+    "min": 0.0,
+    "max": 1.0,
+    "default": 0,
+    "allowed_values": [
+      0,
+      1
+    ]
+  },
+  "LVH": {
+    "name": "LVH",
+    "display_label": "Left Ventricular Hypertrophy (LVH)",
+    "type": "binary",
+    "unit": null,
+    "group": "ecg",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "Poor R Progression": {
+    "name": "Poor R Progression",
+    "display_label": "Poor R Wave Progression",
+    "type": "binary",
+    "unit": null,
+    "group": "ecg",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "N",
+      "Y"
+    ]
+  },
+  "BBB": {
+    "name": "BBB",
+    "display_label": "Bundle Branch Block (BBB)",
+    "type": "categorical",
+    "unit": null,
+    "group": "ecg",
+    "min": null,
+    "max": null,
+    "default": "N",
+    "allowed_values": [
+      "LBBB",
+      "N",
+      "RBBB"
+    ]
+  },
+  "FBS": {
+    "name": "FBS",
+    "display_label": "Fasting Blood Sugar (FBS)",
+    "type": "numeric",
+    "unit": "mg/dL",
+    "group": "labs",
+    "min": 62.0,
+    "max": 400.0,
+    "default": 98.0,
+    "allowed_values": null
+  },
+  "CR": {
+    "name": "CR",
+    "display_label": "Serum Creatinine (CR)",
+    "type": "numeric",
+    "unit": "mg/dL",
+    "group": "labs",
+    "min": 0.5,
+    "max": 2.2,
+    "default": 1.0,
+    "allowed_values": null
+  },
+  "TG": {
+    "name": "TG",
+    "display_label": "Triglycerides (TG)",
+    "type": "numeric",
+    "unit": "mg/dL",
+    "group": "labs",
+    "min": 37.0,
+    "max": 1050.0,
+    "default": 122.0,
+    "allowed_values": null
+  },
+  "LDL": {
+    "name": "LDL",
+    "display_label": "Low-Density Lipoprotein (LDL)",
+    "type": "numeric",
+    "unit": "mg/dL",
+    "group": "labs",
+    "min": 18.0,
+    "max": 232.0,
+    "default": 100.0,
+    "allowed_values": null
+  },
+  "HDL": {
+    "name": "HDL",
+    "display_label": "High-Density Lipoprotein (HDL)",
+    "type": "numeric",
+    "unit": "mg/dL",
+    "group": "labs",
+    "min": 15.9,
+    "max": 111.0,
+    "default": 39.0,
+    "allowed_values": null
+  },
+  "BUN": {
+    "name": "BUN",
+    "display_label": "Blood Urea Nitrogen (BUN)",
+    "type": "numeric",
+    "unit": "mg/dL",
+    "group": "labs",
+    "min": 6.0,
+    "max": 52.0,
+    "default": 16.0,
+    "allowed_values": null
+  },
+  "ESR": {
+    "name": "ESR",
+    "display_label": "Erythrocyte Sedimentation Rate (ESR)",
+    "type": "numeric",
+    "unit": "mm/hr",
+    "group": "labs",
+    "min": 1.0,
+    "max": 90.0,
+    "default": 15.0,
+    "allowed_values": null
+  },
+  "HB": {
+    "name": "HB",
+    "display_label": "Hemoglobin (HB)",
+    "type": "numeric",
+    "unit": "g/dL",
+    "group": "labs",
+    "min": 8.9,
+    "max": 17.6,
+    "default": 13.2,
+    "allowed_values": null
+  },
+  "K": {
+    "name": "K",
+    "display_label": "Serum Potassium (K)",
+    "type": "numeric",
+    "unit": "mEq/L",
+    "group": "labs",
+    "min": 3.0,
+    "max": 6.6,
+    "default": 4.2,
+    "allowed_values": null
+  },
+  "Na": {
+    "name": "Na",
+    "display_label": "Serum Sodium (Na)",
+    "type": "numeric",
+    "unit": "mEq/L",
+    "group": "labs",
+    "min": 128.0,
+    "max": 156.0,
+    "default": 141.0,
+    "allowed_values": null
+  },
+  "WBC": {
+    "name": "WBC",
+    "display_label": "White Blood Cell Count (WBC)",
+    "type": "numeric",
+    "unit": "cells/\u00b5L",
+    "group": "labs",
+    "min": 3700.0,
+    "max": 18000.0,
+    "default": 7100.0,
+    "allowed_values": null
+  },
+  "Lymph": {
+    "name": "Lymph",
+    "display_label": "Lymphocytes Percentage",
+    "type": "numeric",
+    "unit": "%",
+    "group": "labs",
+    "min": 7.0,
+    "max": 60.0,
+    "default": 32.0,
+    "allowed_values": null
+  },
+  "Neut": {
+    "name": "Neut",
+    "display_label": "Neutrophils Percentage",
+    "type": "numeric",
+    "unit": "%",
+    "group": "labs",
+    "min": 32.0,
+    "max": 89.0,
+    "default": 60.0,
+    "allowed_values": null
+  },
+  "PLT": {
+    "name": "PLT",
+    "display_label": "Platelet Count (PLT)",
+    "type": "numeric",
+    "unit": "10\u00b3/\u00b5L",
+    "group": "labs",
+    "min": 25.0,
+    "max": 742.0,
+    "default": 210.0,
+    "allowed_values": null
+  },
+  "EF-TTE": {
+    "name": "EF-TTE",
+    "display_label": "Ejection Fraction on TTE",
+    "type": "numeric",
+    "unit": "%",
+    "group": "echo",
+    "min": 15.0,
+    "max": 60.0,
+    "default": 50.0,
+    "allowed_values": null
+  },
+  "Region RWMA": {
+    "name": "Region RWMA",
+    "display_label": "Regional Wall Motion Abnormality (RWMA)",
+    "type": "ordinal",
+    "unit": "segments (0-4)",
+    "group": "echo",
+    "min": 0.0,
+    "max": 4.0,
+    "default": 0.0,
+    "allowed_values": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "VHD": {
+    "name": "VHD",
+    "display_label": "Valvular Heart Disease (VHD)",
+    "type": "categorical",
+    "unit": null,
+    "group": "echo",
+    "min": null,
+    "max": null,
+    "default": "mild",
+    "allowed_values": [
+      "Moderate",
+      "N",
+      "Severe",
+      "mild"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+README.md:8:## Clinical Disclaimer (Mandatory)
+api/app/config.py:27:    disclaimer: str = (
+api/app/main.py:271:        disclaimer=settings.disclaimer,
+api/app/main.py:443:        disclaimer=settings.disclaimer,
+api/app/main.py:582:        disclaimer=(
+api/app/schemas.py:15:    disclaimer: str = Field(description="Mandatory clinical decision-support research disclaimer")
+api/app/schemas.py:58:    disclaimer: str
+api/app/schemas.py:118:    disclaimer: str
+api/tests/test_api.py:4:1. /health endpoint: returns status, model_version, artifacts_ready=True, disclaimer
+api/tests/test_api.py:63:    assert "disclaimer" in data
+docs/evidence/phase2_6/sample_explain_response.json:493:  "disclaimer": "Explanations describe the displayed calibrated probability in probability points. They reflect model-learned associations within this dataset, not causal findings. Clinical decision support only; not a diagnostic medical device."
+docs/evidence/phase2_6/sample_predict_response.json:98:  "disclaimer": "CardioMap 3D is a clinical decision-support and educational research tool. Predictions represent statistical stenosis risk associations and do not replace coronary angiography or professional clinical judgment."
+web/src/App.tsx:57:      {/* 1. MANDATORY CLINICAL DISCLAIMER BANNER */}

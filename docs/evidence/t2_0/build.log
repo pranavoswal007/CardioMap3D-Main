@@ -1,0 +1,29 @@
+
+> web@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 3061 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                1.13 kB │ gzip:   0.55 kB
+dist/assets/index-BW3j-hJ-.css                35.65 kB │ gzip:   6.78 kB
+dist/assets/external-link-CS3CkA2Y.js          0.28 kB │ gzip:   0.21 kB
+dist/assets/layers-Ci8a8473.js                 0.47 kB │ gzip:   0.27 kB
+dist/assets/ATTRIBUTION-C2poRCGv.js            0.52 kB │ gzip:   0.35 kB
+dist/assets/rolldown-runtime-hePW80VL.js       0.71 kB │ gzip:   0.42 kB
+dist/assets/ArteryMaskOverlay-B_o8TQGx.js      0.90 kB │ gzip:   0.55 kB
+dist/assets/vesselColors-B6-yczIe.js           1.08 kB │ gzip:   0.57 kB
+dist/assets/AboutTab-B6dF3033.js               4.05 kB │ gzip:   1.42 kB
+dist/assets/TerritoryMap-CrRq6087.js           7.25 kB │ gzip:   2.46 kB
+dist/assets/WhatIfPanel-DDg6TRrY.js            9.59 kB │ gzip:   3.20 kB
+dist/assets/ExplanationPanel-DdI4YzPK.js      10.08 kB │ gzip:   2.92 kB
+dist/assets/ValidationTab-CuAtYHe3.js         15.23 kB │ gzip:   4.00 kB
+dist/assets/HeartViewer-00WdgASm.js           23.98 kB │ gzip:   8.09 kB
+dist/assets/DevDebugPanel-Dsfxk37N.js         29.07 kB │ gzip:   9.00 kB
+dist/assets/index-C8vjHfpH.js                247.09 kB │ gzip:  76.93 kB
+dist/assets/recharts-CD4HybLX.js             364.60 kB │ gzip: 106.12 kB
+dist/assets/three-drei-RKWVwtsb.js         1,009.46 kB │ gzip: 270.71 kB
+
+✓ built in 423ms

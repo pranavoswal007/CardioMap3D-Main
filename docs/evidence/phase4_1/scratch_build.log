@@ -1,0 +1,40 @@
+Cloning into '/tmp/cardiomap3d_scratch_clone'...
+done.
+
+added 341 packages, and audited 342 packages in 3s
+
+62 packages are looking for funding
+  run `npm fund` for details
+
+10 vulnerabilities (3 moderate, 5 high, 2 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> web@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 3049 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               1.13 kB │ gzip:   0.54 kB
+dist/assets/index-Chgpuuku.css               27.88 kB │ gzip:   5.71 kB
+dist/assets/external-link-BzzXCoPt.js         0.28 kB │ gzip:   0.22 kB
+dist/assets/rolldown-runtime-hePW80VL.js      0.71 kB │ gzip:   0.42 kB
+dist/assets/AboutTab-JCu6KzvN.js              4.51 kB │ gzip:   1.65 kB
+dist/assets/ValidationTab-CxtRmYM_.js         8.19 kB │ gzip:   2.71 kB
+dist/assets/ExplanationPanel-4Z1o92Yv.js      9.61 kB │ gzip:   2.80 kB
+dist/assets/HeartViewer-B0C-G2bF.js          23.54 kB │ gzip:   6.96 kB
+dist/assets/index-BSBw0l8r.js               240.16 kB │ gzip:  75.06 kB
+dist/assets/recharts-CD4HybLX.js            364.60 kB │ gzip: 106.12 kB
+dist/assets/three-drei-C--cQ8i2.js        1,000.90 kB │ gzip: 267.91 kB
+
+✓ built in 706ms
+Clean scratch clone build complete.

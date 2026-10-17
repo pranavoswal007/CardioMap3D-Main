@@ -1,0 +1,22 @@
+
+> web@0.0.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /Users/pranavoswal/Projects/cardiomap3d/web
+
+ ✓ src/test/phase3_5.test.tsx (4 tests) 24ms
+stdout | src/test/t2_1.test.tsx > T2-1: What-If Mode & Math Derivations > debounces POST /predict by 150ms and aborts stale in-flight requests
+[WhatIf Latency] 160.00 ms (samples: 1)
+
+stdout | src/test/t2_1.test.tsx > T2-1: What-If Mode & Math Derivations > recomputes BMI automatically when Weight slider changes before calling API
+[WhatIf Latency] 160.00 ms (samples: 2)
+
+ ✓ src/test/t2_1.test.tsx (13 tests) 159ms
+ ✓ src/test/phase4.test.tsx (15 tests) 99ms
+
+ Test Files  3 passed (3)
+      Tests  32 passed (32)
+   Start at  01:42:03
+   Duration  1.04s (transform 158ms, setup 157ms, collect 749ms, tests 283ms, environment 858ms, prepare 114ms)
+

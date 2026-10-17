@@ -1,0 +1,26 @@
+--- 1. Fetching sample patients from /patients/samples ---
+Selected sample: sample_patient_3 (dataset row: 3, CAD prob: 0.2594)
+
+--- 2. Executing POST /predict ---
+Saved raw /predict response to docs/evidence/phase4/e2e_predict.json
+Prediction Summary:
+  CAD probability: 0.2594 (threshold: 0.5377, risk_level: low)
+  LAD probability: 0.1843 (threshold: 0.5006, risk_level: low)
+  LCX probability: 0.3043 (threshold: 0.3973, risk_level: low)
+  RCA probability: 0.4918 (threshold: 0.3354, risk_level: high)
+  Coherence: is_incoherent=True, note=Anatomical coherence adjustment applied: individual vessel probability exceeds raw CAD score.
+
+--- 3. Executing POST /explain?targets=cad ---
+Saved raw /explain response to docs/evidence/phase4/e2e_explain_cad.json
+Explain Summary:
+  Base value: 0.66835 probability points
+  Top 4 contributions:
+    - Typical Anginal Chest Pain: shap=-0.19666, relative_pct=-30.4%, direction=decreases_risk, stability=stable
+    - Age: shap=0.11904, relative_pct=18.4%, direction=increases_risk, stability=stable
+    - Triglycerides (TG): shap=-0.05818, relative_pct=-8.99%, direction=decreases_risk, stability=moderate
+    - Systolic Blood Pressure (BP): shap=-0.05496, relative_pct=-8.49%, direction=decreases_risk, stability=low
+  Physiology factors count: 10
+  Explainer method: KernelExplainer (nsamples=150, background=30)
+  Stability note: Global feature stability evaluated across B=20 bootstrap refits tracking top-10 feature persistence using native tree an...
+
+=== Real E2E Run Complete ===

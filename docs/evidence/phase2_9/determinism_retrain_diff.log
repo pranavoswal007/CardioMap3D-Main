@@ -1,0 +1,26 @@
+Comparing artifacts between base='/Users/pranavoswal/Projects/cardiomap3d' and target='/tmp/cardiomap_scratch_2_9'
+================================================================================
+
+File: metrics.json
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------
+
+File: shap_global.json
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------
+
+File: shap_stability.json
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------
+
+File: shap_background_sample.csv
+Classification: A (volatile only)
+Max Numeric Diff: 0.0
+Changed Paths Count: 0
+--------------------------------------------------------------------------------

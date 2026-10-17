@@ -1,0 +1,22 @@
+=== git log -S"1.0.0" --oneline ===
+10439d1 Phase 2.7: disclaimer, targets param, tracked artifacts, fresh-clone check
+33d9cf4 Phase 3: 3D heart viewer
+e0558a1 Phase 0.5: hardening, lint/build checks, leakage guard audit, dataset added
+
+=== git log -S"0.2.0" --oneline ===
+10439d1 Phase 2.7: disclaimer, targets param, tracked artifacts, fresh-clone check
+9491341 Phase 2.6: metrics table fix, API threshold fields
+fbc8d30 Phase 2: FastAPI backend
+e0558a1 Phase 0.5: hardening, lint/build checks, leakage guard audit, dataset added
+
+=== grep -rn '"model_version"' docs/evidence/ ===
+docs/evidence/phase2_7/version_instances.log:10:api/tests/test_api.py:62:    assert "model_version" in data
+docs/evidence/phase2_7/version_instances.log:11:docs/evidence/phase2_6/sample_explain_response.json:491:  "model_version": "0.2.0",
+docs/evidence/phase2_7/version_instances.log:12:docs/evidence/phase2_6/sample_predict_response.json:97:  "model_version": "0.2.0",
+docs/evidence/phase2_7/fresh_clone_test.log:218:  "model_version": "0.2.0",
+docs/evidence/phase2_7/version_occurrences.log:12:api/tests/test_api.py:62:    assert "model_version" in data
+docs/evidence/phase2_7/version_occurrences.log:50:docs/evidence/phase2_6/sample_explain_response.json:491:  "model_version": "0.2.0",
+docs/evidence/phase2_7/version_occurrences.log:52:docs/evidence/phase2_6/sample_predict_response.json:97:  "model_version": "0.2.0",
+docs/evidence/phase2_6/sample_predict_response.json:97:  "model_version": "0.2.0",
+docs/evidence/phase2_6/sample_explain_response.json:491:  "model_version": "0.2.0",
+docs/evidence/phase2_8/version_history_audit.log:12:=== grep -rn '"model_version"' docs/evidence/ ===

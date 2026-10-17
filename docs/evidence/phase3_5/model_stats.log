@@ -1,0 +1,11 @@
+File: public/models/heart.glb
+Size bytes: 1653936
+Size MB: 1.58 MB
+Mesh name: Object_2
+Triangles count: 317302
+Vertex count: 177529
+Attributes: [ 'normal', 'color', 'position' ]
+COLOR_0 (color) exists: true
+COLOR_0 itemSize: 4
+Bounding Box min: {"x":-0.5827204199346904,"y":-1,"z":-0.9085665456099125}
+Bounding Box max: {"x":0.5827204199346904,"y":1,"z":0.9085665456099125}

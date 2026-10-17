@@ -1,0 +1,3 @@
+==> Exporting OpenAPI schema to api/openapi.json...
+.venv/bin/python -m api.app.export_openapi
+✓ OpenAPI schema exported successfully to api/openapi.json

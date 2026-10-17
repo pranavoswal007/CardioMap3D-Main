@@ -1,0 +1,848 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CardioMap 3D API",
+    "description": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment.",
+    "version": "0.2.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Check API operational health, model version, and artifact readiness.",
+        "operationId": "health_check_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/schema": {
+      "get": {
+        "summary": "Get Schema",
+        "description": "Return feature schema for the dynamic form and per-target risk cutoffs for the UI legend.",
+        "operationId": "get_schema_schema_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemaResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/predict": {
+      "post": {
+        "summary": "Predict Stenosis Risk",
+        "description": "Predict calibrated CAD and vessel-specific stenosis probabilities with coherence audit.",
+        "operationId": "predict_stenosis_risk_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "additionalProperties": true,
+                "type": "object",
+                "title": "Patient Features"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/explain": {
+      "post": {
+        "summary": "Explain Stenosis Prediction",
+        "description": "Compute local SHAP feature attributions in raw score and normalized relative contribution %.",
+        "operationId": "explain_stenosis_prediction_explain_post",
+        "parameters": [
+          {
+            "name": "top_n",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "title": "Top N"
+            }
+          },
+          {
+            "name": "targets",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Comma-separated subset of targets (allowed: cad, lad, lcx, rca)",
+              "title": "Targets"
+            },
+            "description": "Comma-separated subset of targets (allowed: cad, lad, lcx, rca)"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "title": "Patient Features"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExplainResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "summary": "Get Metrics Report",
+        "description": "Return deployed model performance with 95% CIs, candidate comparison, and baseline benchmarks.",
+        "operationId": "get_metrics_report_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patients/samples": {
+      "get": {
+        "summary": "Get Sample Patients",
+        "description": "Return 6 real de-identified patient feature records from dataset (2 low, 2 moderate, 2 high risk).",
+        "operationId": "get_sample_patients_patients_samples_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SamplePatient"
+                  },
+                  "type": "array",
+                  "title": "Response Get Sample Patients Patients Samples Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CutoffThreshold": {
+        "properties": {
+          "operating_threshold": {
+            "type": "number",
+            "title": "Operating Threshold",
+            "description": "Selected operating cutoff t (Youden's J or Max F1)"
+          },
+          "threshold": {
+            "type": "number",
+            "title": "Threshold",
+            "description": "Selected operating decision threshold (= operating_threshold)"
+          },
+          "moderate_min": {
+            "type": "number",
+            "title": "Moderate Min",
+            "description": "Lower bound for moderate tier (= t)"
+          },
+          "high_min": {
+            "type": "number",
+            "title": "High Min",
+            "description": "Lower bound for high tier (= t + 0.15)"
+          },
+          "high_threshold": {
+            "type": "number",
+            "title": "High Threshold",
+            "description": "High risk threshold (= t + 0.15)"
+          },
+          "cohort_prevalence": {
+            "type": "number",
+            "title": "Cohort Prevalence",
+            "description": "Prevalence of positive outcome in training cohort"
+          }
+        },
+        "type": "object",
+        "required": [
+          "operating_threshold",
+          "threshold",
+          "moderate_min",
+          "high_min",
+          "high_threshold",
+          "cohort_prevalence"
+        ],
+        "title": "CutoffThreshold",
+        "description": "Threshold cutoffs for risk tier classification and UI legend display."
+      },
+      "ExplainResponse": {
+        "properties": {
+          "targets": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TargetExplanation"
+            },
+            "type": "object",
+            "title": "Targets",
+            "description": "Explanations per target (cad, lad, lcx, rca)"
+          },
+          "requested_targets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Requested Targets",
+            "description": "Canonical list of targets requested and explained"
+          },
+          "physiology": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/PhysiologyItem"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Physiology",
+            "description": "Key physiological measurement attributions for CAD (populated only when cad is requested, null otherwise)"
+          },
+          "explainer": {
+            "$ref": "#/components/schemas/ExplainerMetadata",
+            "description": "Explanation method, background sample size, and sampling parameters"
+          },
+          "api_version": {
+            "type": "string",
+            "title": "Api Version",
+            "description": "API interface specification version",
+            "default": "0.2.0"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version",
+            "description": "Underlying ML model release version",
+            "default": "0.2.0"
+          },
+          "interpretation_note": {
+            "type": "string",
+            "title": "Interpretation Note",
+            "description": "Clinical interpretation disclosure",
+            "default": "Explanations describe the displayed calibrated probability in probability points and reflect model-learned associations, not causal findings."
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "description": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment.",
+            "default": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."
+          }
+        },
+        "type": "object",
+        "required": [
+          "targets",
+          "requested_targets",
+          "explainer"
+        ],
+        "title": "ExplainResponse",
+        "description": "Full SHAP explainability response."
+      },
+      "ExplainerMetadata": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "title": "Method",
+            "description": "Model-agnostic explainer method",
+            "default": "KernelExplainer"
+          },
+          "background_size": {
+            "type": "integer",
+            "title": "Background Size",
+            "description": "Size of stratified background reference sample",
+            "default": 30
+          },
+          "nsamples": {
+            "type": "integer",
+            "title": "Nsamples",
+            "description": "Number of Monte Carlo feature perturbation samples per patient",
+            "default": 150
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit",
+            "description": "Attribution unit",
+            "default": "probability points"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "description": "Clinical interpretation note",
+            "default": "Attributions are estimated, describe the displayed calibrated probability, and are not causes."
+          },
+          "stability_note": {
+            "type": "string",
+            "title": "Stability Note",
+            "description": "Disclosure for bootstrap stability labels dynamically constructed from provenance"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stability_note"
+        ],
+        "title": "ExplainerMetadata",
+        "description": "Metadata describing the explanation method, sampling parameters, and clinical interpretation."
+      },
+      "FeatureExplanation": {
+        "properties": {
+          "feature": {
+            "type": "string",
+            "title": "Feature",
+            "description": "Raw feature identifier"
+          },
+          "display_label": {
+            "type": "string",
+            "title": "Display Label",
+            "description": "Human-readable display name"
+          },
+          "patient_value": {
+            "title": "Patient Value",
+            "description": "Input value provided for the patient"
+          },
+          "shap_value": {
+            "type": "number",
+            "title": "Shap Value",
+            "description": "SHAP attribution value in model raw score units"
+          },
+          "relative_contribution_pct": {
+            "type": "number",
+            "title": "Relative Contribution Pct",
+            "description": "Normalized signed relative contribution percentage"
+          },
+          "direction": {
+            "type": "string",
+            "title": "Direction",
+            "description": "'increases_risk' or 'decreases_risk'"
+          },
+          "stability_label": {
+            "type": "string",
+            "title": "Stability Label",
+            "description": "'stable', 'moderate', or 'low' persistence across bootstrap resamples"
+          }
+        },
+        "type": "object",
+        "required": [
+          "feature",
+          "display_label",
+          "patient_value",
+          "shap_value",
+          "relative_contribution_pct",
+          "direction",
+          "stability_label"
+        ],
+        "title": "FeatureExplanation",
+        "description": "Local SHAP feature attribution entry."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "API operational status",
+            "default": "ok"
+          },
+          "app_name": {
+            "type": "string",
+            "title": "App Name"
+          },
+          "api_version": {
+            "type": "string",
+            "title": "Api Version",
+            "description": "API interface specification version",
+            "default": "0.2.0"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version",
+            "description": "Underlying ML model release version",
+            "default": "0.2.0"
+          },
+          "artifact_hash": {
+            "type": "string",
+            "title": "Artifact Hash",
+            "description": "SHA256 fingerprint of deployed ML artifacts"
+          },
+          "artifacts_ready": {
+            "type": "boolean",
+            "title": "Artifacts Ready",
+            "description": "Whether trained ML model artifacts exist and loaded"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "description": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment.",
+            "default": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."
+          }
+        },
+        "type": "object",
+        "required": [
+          "app_name",
+          "artifact_hash",
+          "artifacts_ready"
+        ],
+        "title": "HealthResponse",
+        "description": "Health check status response."
+      },
+      "MetricsResponse": {
+        "properties": {
+          "deployed_models": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Deployed Models"
+          },
+          "candidate_comparison": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Candidate Comparison"
+          },
+          "clinical_baseline_comparison": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Clinical Baseline Comparison"
+          },
+          "nested_tuning_config": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Nested Tuning Config"
+          },
+          "disclosures": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Disclosures"
+          }
+        },
+        "type": "object",
+        "required": [
+          "deployed_models",
+          "candidate_comparison",
+          "clinical_baseline_comparison",
+          "nested_tuning_config",
+          "disclosures"
+        ],
+        "title": "MetricsResponse",
+        "description": "Complete performance metrics, candidate comparison, and baseline benchmarks."
+      },
+      "PhysiologyItem": {
+        "properties": {
+          "feature": {
+            "type": "string",
+            "title": "Feature"
+          },
+          "display_label": {
+            "type": "string",
+            "title": "Display Label"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "patient_value": {
+            "title": "Patient Value"
+          },
+          "relative_contribution_pct": {
+            "type": "number",
+            "title": "Relative Contribution Pct"
+          },
+          "direction": {
+            "type": "string",
+            "title": "Direction"
+          },
+          "stability_label": {
+            "type": "string",
+            "title": "Stability Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "feature",
+          "display_label",
+          "category",
+          "patient_value",
+          "relative_contribution_pct",
+          "direction",
+          "stability_label"
+        ],
+        "title": "PhysiologyItem",
+        "description": "Physiological factor contribution to overall CAD."
+      },
+      "PredictResponse": {
+        "properties": {
+          "cad": {
+            "$ref": "#/components/schemas/TargetPrediction",
+            "description": "Overall CAD prediction"
+          },
+          "vessels": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TargetPrediction"
+            },
+            "type": "object",
+            "title": "Vessels",
+            "description": "Individual coronary artery vessel predictions (lad, lcx, rca)"
+          },
+          "coherence": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Coherence",
+            "description": "Anatomical coherence audit between overall CAD and vessels"
+          },
+          "imputed_features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Imputed Features",
+            "description": "List of omitted feature names that were filled using schema defaults"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Warnings",
+            "description": "Validation warnings for out-of-range clinical inputs"
+          },
+          "api_version": {
+            "type": "string",
+            "title": "Api Version",
+            "description": "API interface specification version",
+            "default": "0.2.0"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version",
+            "description": "Underlying ML model release version",
+            "default": "0.2.0"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "description": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment.",
+            "default": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."
+          }
+        },
+        "type": "object",
+        "required": [
+          "cad",
+          "vessels",
+          "coherence",
+          "imputed_features",
+          "warnings"
+        ],
+        "title": "PredictResponse",
+        "description": "Multi-vessel CAD prediction response with coherence and imputation audit."
+      },
+      "SamplePatient": {
+        "properties": {
+          "sample_id": {
+            "type": "string",
+            "title": "Sample Id"
+          },
+          "dataset_row_index": {
+            "type": "integer",
+            "title": "Dataset Row Index"
+          },
+          "cad_probability": {
+            "type": "number",
+            "title": "Cad Probability"
+          },
+          "risk_tier": {
+            "type": "string",
+            "title": "Risk Tier"
+          },
+          "features": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Features"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sample_id",
+          "dataset_row_index",
+          "cad_probability",
+          "risk_tier",
+          "features"
+        ],
+        "title": "SamplePatient",
+        "description": "Real de-identified patient sample from dataset."
+      },
+      "SchemaResponse": {
+        "properties": {
+          "api_version": {
+            "type": "string",
+            "title": "Api Version",
+            "description": "API interface specification version",
+            "default": "0.2.0"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version",
+            "description": "Underlying ML model release version",
+            "default": "0.2.0"
+          },
+          "artifact_hash": {
+            "type": "string",
+            "title": "Artifact Hash",
+            "description": "SHA256 fingerprint of deployed ML artifacts"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer",
+            "description": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment.",
+            "default": "CardioMap 3D is for decision support and educational purposes only. It is not a medical device and not a substitute for formal diagnostic imaging (such as coronary angiography) or professional clinical judgment."
+          },
+          "feature_schema": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Feature Schema",
+            "description": "Full 55-feature schema dictionary"
+          },
+          "risk_cutoffs": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CutoffThreshold"
+            },
+            "type": "object",
+            "title": "Risk Cutoffs",
+            "description": "Per-target risk level thresholds and margins"
+          },
+          "margin": {
+            "type": "number",
+            "title": "Margin",
+            "description": "Margin above operating threshold defining High risk",
+            "default": 0.15
+          }
+        },
+        "type": "object",
+        "required": [
+          "artifact_hash",
+          "feature_schema",
+          "risk_cutoffs"
+        ],
+        "title": "SchemaResponse",
+        "description": "Feature schema response for dynamic UI forms and risk cutoffs for UI legends."
+      },
+      "TargetExplanation": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "title": "Target"
+          },
+          "raw_unit": {
+            "type": "string",
+            "title": "Raw Unit",
+            "description": "Measurement unit for raw SHAP values (probability points)",
+            "default": "probability points"
+          },
+          "base_value": {
+            "type": "number",
+            "title": "Base Value",
+            "description": "Expected base score across reference background"
+          },
+          "contributions": {
+            "items": {
+              "$ref": "#/components/schemas/FeatureExplanation"
+            },
+            "type": "array",
+            "title": "Contributions",
+            "description": "Top N local feature attributions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target",
+          "base_value",
+          "contributions"
+        ],
+        "title": "TargetExplanation",
+        "description": "Per-target explainability breakdown."
+      },
+      "TargetPrediction": {
+        "properties": {
+          "probability": {
+            "type": "number",
+            "maximum": 0.99,
+            "minimum": 0.01,
+            "title": "Probability",
+            "description": "Calibrated risk probability clipped to [0.01, 0.99]"
+          },
+          "label": {
+            "type": "integer",
+            "title": "Label",
+            "description": "Binary classification label (1 = Elevated Risk, 0 = Low Risk)"
+          },
+          "risk_level": {
+            "type": "string",
+            "title": "Risk Level",
+            "description": "'low', 'moderate', or 'high'"
+          },
+          "cohort_prevalence": {
+            "type": "number",
+            "title": "Cohort Prevalence",
+            "description": "Baseline cohort prevalence rate"
+          },
+          "relative_risk": {
+            "type": "number",
+            "title": "Relative Risk",
+            "description": "Relative risk ratio (probability / cohort_prevalence)"
+          },
+          "threshold": {
+            "type": "number",
+            "title": "Threshold",
+            "description": "Selected operating decision threshold separating Low from Moderate tier"
+          },
+          "high_threshold": {
+            "type": "number",
+            "title": "High Threshold",
+            "description": "High risk threshold (threshold + high margin)"
+          }
+        },
+        "type": "object",
+        "required": [
+          "probability",
+          "label",
+          "risk_level",
+          "cohort_prevalence",
+          "relative_risk",
+          "threshold",
+          "high_threshold"
+        ],
+        "title": "TargetPrediction",
+        "description": "Target prediction score, label, risk tier, and relative risk."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+==> Verifying artifact consistency...
+.venv/bin/python -m cardiomap_ml.verify_artifacts
+2026-10-13 14:57:19,912 [INFO] Verifying CardioMap 3D artifacts in artifacts...
+2026-10-13 14:57:19,912 [INFO] ✓ feature_schema.json has exactly 55 features
+2026-10-13 14:57:19,916 [INFO] ✓ shap_background_sample.csv is stratified 30-patient sample across 55 features
+2026-10-13 14:57:19,988 [INFO] ✓ Target y_cad: model=SoftVotingEnsemble, threshold=0.5377 verified across joblib, thresholds, metrics
+2026-10-13 14:57:20,033 [INFO] ✓ Target y_lad: model=RandomForest, threshold=0.5006 verified across joblib, thresholds, metrics
+2026-10-13 14:57:20,041 [INFO] ✓ Target y_lcx: model=LightGBM, threshold=0.3973 verified across joblib, thresholds, metrics
+2026-10-13 14:57:20,046 [INFO] ✓ Target y_rca: model=LGBM_Shallow, threshold=0.3354 verified across joblib, thresholds, metrics
+2026-10-13 14:57:20,046 [INFO] ✓ Model version `0.2.0` verified in docs/model_card.md and api/config.py
+2026-10-13 14:57:20,046 [INFO] All artifact consistency checks PASSED successfully.

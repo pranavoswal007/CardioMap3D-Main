@@ -1,0 +1,494 @@
+{
+  "targets": {
+    "cad": {
+      "target": "cad",
+      "raw_unit": "probability points",
+      "base_value": 0.66835,
+      "contributions": [
+        {
+          "feature": "Typical Chest Pain",
+          "display_label": "Typical Anginal Chest Pain",
+          "patient_value": 1,
+          "shap_value": 0.08686,
+          "relative_contribution_pct": 29.53,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Region RWMA",
+          "display_label": "Regional Wall Motion Abnormality (RWMA)",
+          "patient_value": 2.0,
+          "shap_value": 0.07793,
+          "relative_contribution_pct": 26.5,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Age",
+          "display_label": "Age",
+          "patient_value": 62.0,
+          "shap_value": 0.03161,
+          "relative_contribution_pct": 10.75,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "HTN",
+          "display_label": "Hypertension (HTN)",
+          "patient_value": 1,
+          "shap_value": 0.02501,
+          "relative_contribution_pct": 8.5,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "TG",
+          "display_label": "Triglycerides (TG)",
+          "patient_value": 180.0,
+          "shap_value": 0.01955,
+          "relative_contribution_pct": 6.65,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Systolic Murmur",
+          "display_label": "Systolic Heart Murmur",
+          "patient_value": "N",
+          "shap_value": 0.01584,
+          "relative_contribution_pct": 5.38,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "EF-TTE",
+          "display_label": "Ejection Fraction on TTE",
+          "patient_value": 45.0,
+          "shap_value": 0.01361,
+          "relative_contribution_pct": 4.63,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "Dyspnea",
+          "display_label": "Exertional Dyspnea",
+          "patient_value": "N",
+          "shap_value": 0.01349,
+          "relative_contribution_pct": 4.59,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Weight",
+          "display_label": "Body Weight",
+          "patient_value": 74.0,
+          "shap_value": 0.00575,
+          "relative_contribution_pct": 1.96,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "LDL",
+          "display_label": "Low-Density Lipoprotein (LDL)",
+          "patient_value": 100.0,
+          "shap_value": 0.00446,
+          "relative_contribution_pct": 1.52,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        }
+      ]
+    },
+    "lad": {
+      "target": "lad",
+      "raw_unit": "probability points",
+      "base_value": 0.54798,
+      "contributions": [
+        {
+          "feature": "Region RWMA",
+          "display_label": "Regional Wall Motion Abnormality (RWMA)",
+          "patient_value": 2.0,
+          "shap_value": 0.11482,
+          "relative_contribution_pct": 28.81,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Typical Chest Pain",
+          "display_label": "Typical Anginal Chest Pain",
+          "patient_value": 1,
+          "shap_value": 0.09625,
+          "relative_contribution_pct": 24.15,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "EF-TTE",
+          "display_label": "Ejection Fraction on TTE",
+          "patient_value": 45.0,
+          "shap_value": 0.04854,
+          "relative_contribution_pct": 12.18,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Atypical",
+          "display_label": "Atypical Chest Pain",
+          "patient_value": "N",
+          "shap_value": 0.0314,
+          "relative_contribution_pct": 7.88,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Age",
+          "display_label": "Age",
+          "patient_value": 62.0,
+          "shap_value": 0.03004,
+          "relative_contribution_pct": 7.54,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "HTN",
+          "display_label": "Hypertension (HTN)",
+          "patient_value": 1,
+          "shap_value": 0.02524,
+          "relative_contribution_pct": 6.33,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "Systolic Murmur",
+          "display_label": "Systolic Heart Murmur",
+          "patient_value": "N",
+          "shap_value": 0.01767,
+          "relative_contribution_pct": 4.43,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "PLT",
+          "display_label": "Platelet Count (PLT)",
+          "patient_value": 210.0,
+          "shap_value": 0.01352,
+          "relative_contribution_pct": 3.39,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "TG",
+          "display_label": "Triglycerides (TG)",
+          "patient_value": 180.0,
+          "shap_value": 0.0111,
+          "relative_contribution_pct": 2.79,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Poor R Progression",
+          "display_label": "Poor R Wave Progression",
+          "patient_value": "N",
+          "shap_value": 0.00993,
+          "relative_contribution_pct": 2.49,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        }
+      ]
+    },
+    "lcx": {
+      "target": "lcx",
+      "raw_unit": "probability points",
+      "base_value": 0.36461,
+      "contributions": [
+        {
+          "feature": "Length",
+          "display_label": "Height / Length",
+          "patient_value": 165.0,
+          "shap_value": -0.05425,
+          "relative_contribution_pct": -17.31,
+          "direction": "decreases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Typical Chest Pain",
+          "display_label": "Typical Anginal Chest Pain",
+          "patient_value": 1,
+          "shap_value": 0.04574,
+          "relative_contribution_pct": 14.6,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "TG",
+          "display_label": "Triglycerides (TG)",
+          "patient_value": 180.0,
+          "shap_value": 0.04517,
+          "relative_contribution_pct": 14.42,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Age",
+          "display_label": "Age",
+          "patient_value": 62.0,
+          "shap_value": 0.04256,
+          "relative_contribution_pct": 13.58,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "CR",
+          "display_label": "Serum Creatinine (CR)",
+          "patient_value": 1.0,
+          "shap_value": -0.0402,
+          "relative_contribution_pct": -12.83,
+          "direction": "decreases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Na",
+          "display_label": "Serum Sodium (Na)",
+          "patient_value": 141.0,
+          "shap_value": 0.02785,
+          "relative_contribution_pct": 8.89,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "HDL",
+          "display_label": "High-Density Lipoprotein (HDL)",
+          "patient_value": 39.0,
+          "shap_value": 0.02415,
+          "relative_contribution_pct": 7.71,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "LDL",
+          "display_label": "Low-Density Lipoprotein (LDL)",
+          "patient_value": 100.0,
+          "shap_value": 0.0225,
+          "relative_contribution_pct": 7.18,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "FBS",
+          "display_label": "Fasting Blood Sugar (FBS)",
+          "patient_value": 98.0,
+          "shap_value": 0.01,
+          "relative_contribution_pct": 3.19,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "EF-TTE",
+          "display_label": "Ejection Fraction on TTE",
+          "patient_value": 45.0,
+          "shap_value": 0.00091,
+          "relative_contribution_pct": 0.29,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        }
+      ]
+    },
+    "rca": {
+      "target": "rca",
+      "raw_unit": "probability points",
+      "base_value": 0.34188,
+      "contributions": [
+        {
+          "feature": "Typical Chest Pain",
+          "display_label": "Typical Anginal Chest Pain",
+          "patient_value": 1,
+          "shap_value": 0.06444,
+          "relative_contribution_pct": 29.32,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Age",
+          "display_label": "Age",
+          "patient_value": 62.0,
+          "shap_value": 0.04955,
+          "relative_contribution_pct": 22.54,
+          "direction": "increases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "ESR",
+          "display_label": "Erythrocyte Sedimentation Rate (ESR)",
+          "patient_value": 15.0,
+          "shap_value": -0.03332,
+          "relative_contribution_pct": -15.16,
+          "direction": "decreases_risk",
+          "stability_label": "stable"
+        },
+        {
+          "feature": "Length",
+          "display_label": "Height / Length",
+          "patient_value": 165.0,
+          "shap_value": -0.017,
+          "relative_contribution_pct": -7.73,
+          "direction": "decreases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "WBC",
+          "display_label": "White Blood Cell Count (WBC)",
+          "patient_value": 7100.0,
+          "shap_value": 0.01427,
+          "relative_contribution_pct": 6.49,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "TG",
+          "display_label": "Triglycerides (TG)",
+          "patient_value": 180.0,
+          "shap_value": 0.01369,
+          "relative_contribution_pct": 6.23,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Lymph",
+          "display_label": "Lymphocytes Percentage",
+          "patient_value": 32.0,
+          "shap_value": 0.01149,
+          "relative_contribution_pct": 5.23,
+          "direction": "increases_risk",
+          "stability_label": "moderate"
+        },
+        {
+          "feature": "Sex",
+          "display_label": "Biological Sex",
+          "patient_value": "Male",
+          "shap_value": 0.01078,
+          "relative_contribution_pct": 4.91,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "PR",
+          "display_label": "Pulse Rate (PR)",
+          "patient_value": 70.0,
+          "shap_value": 0.00302,
+          "relative_contribution_pct": 1.37,
+          "direction": "increases_risk",
+          "stability_label": "low"
+        },
+        {
+          "feature": "EF-TTE",
+          "display_label": "Ejection Fraction on TTE",
+          "patient_value": 45.0,
+          "shap_value": -0.00227,
+          "relative_contribution_pct": -1.03,
+          "direction": "decreases_risk",
+          "stability_label": "low"
+        }
+      ]
+    }
+  },
+  "physiology": [
+    {
+      "feature": "Age",
+      "display_label": "Age",
+      "category": "Demographics",
+      "patient_value": 62.0,
+      "relative_contribution_pct": 10.75,
+      "direction": "increases_risk",
+      "stability_label": "stable"
+    },
+    {
+      "feature": "Typical Chest Pain",
+      "display_label": "Typical Anginal Chest Pain",
+      "category": "Symptoms",
+      "patient_value": 1,
+      "relative_contribution_pct": 29.53,
+      "direction": "increases_risk",
+      "stability_label": "stable"
+    },
+    {
+      "feature": "Region RWMA",
+      "display_label": "Regional Wall Motion Abnormality (RWMA)",
+      "category": "Echocardiography",
+      "patient_value": 2.0,
+      "relative_contribution_pct": 26.5,
+      "direction": "increases_risk",
+      "stability_label": "stable"
+    },
+    {
+      "feature": "EF-TTE",
+      "display_label": "Ejection Fraction on TTE",
+      "category": "Echocardiography",
+      "patient_value": 45.0,
+      "relative_contribution_pct": 4.63,
+      "direction": "increases_risk",
+      "stability_label": "low"
+    },
+    {
+      "feature": "HTN",
+      "display_label": "Hypertension (HTN)",
+      "category": "Cardiovascular History",
+      "patient_value": 1,
+      "relative_contribution_pct": 8.5,
+      "direction": "increases_risk",
+      "stability_label": "low"
+    },
+    {
+      "feature": "DM",
+      "display_label": "Diabetes Mellitus (DM)",
+      "category": "Metabolic History",
+      "patient_value": 0,
+      "relative_contribution_pct": 0.0,
+      "direction": "decreases_risk",
+      "stability_label": "moderate"
+    },
+    {
+      "feature": "TG",
+      "display_label": "Triglycerides (TG)",
+      "category": "Lipid Profile",
+      "patient_value": 180.0,
+      "relative_contribution_pct": 6.65,
+      "direction": "increases_risk",
+      "stability_label": "moderate"
+    },
+    {
+      "feature": "FBS",
+      "display_label": "Fasting Blood Sugar (FBS)",
+      "category": "Metabolic Lab",
+      "patient_value": 98.0,
+      "relative_contribution_pct": 0.0,
+      "direction": "decreases_risk",
+      "stability_label": "low"
+    },
+    {
+      "feature": "Tinversion",
+      "display_label": "T-Wave Inversion",
+      "category": "Electrocardiography",
+      "patient_value": 0,
+      "relative_contribution_pct": 0.0,
+      "direction": "decreases_risk",
+      "stability_label": "moderate"
+    },
+    {
+      "feature": "ESR",
+      "display_label": "Erythrocyte Sedimentation Rate (ESR)",
+      "category": "Inflammatory Biomarkers",
+      "patient_value": 15.0,
+      "relative_contribution_pct": 0.0,
+      "direction": "decreases_risk",
+      "stability_label": "low"
+    }
+  ],
+  "explainer": {
+    "method": "KernelExplainer",
+    "background_size": 30,
+    "nsamples": 150,
+    "unit": "probability points",
+    "note": "Attributions are estimated, describe the displayed calibrated probability, and are not causes."
+  },
+  "model_version": "0.2.0",
+  "interpretation_note": "Explanations describe the displayed calibrated probability in probability points and reflect model-learned associations, not causal findings.",
+  "disclaimer": "Explanations describe the displayed calibrated probability in probability points. They reflect model-learned associations within this dataset, not causal findings. Clinical decision support only; not a diagnostic medical device."
+}
