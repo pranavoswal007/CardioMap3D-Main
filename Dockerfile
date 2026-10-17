@@ -25,11 +25,12 @@ COPY data/ /app/data/
 COPY ml/ /app/ml/
 COPY api/ /app/api/
 
+ENV PORT=8000
 EXPOSE 8000
 
 # Health check to ensure API is ready
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:${PORT:-8000}/health || exit 1
 
-# Launch FastAPI with Uvicorn
-CMD ["uvicorn", "api.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Launch FastAPI with Uvicorn (reads $PORT if set by cloud host like Render/CloudRun, defaults to 8000)
+CMD ["sh", "-c", "uvicorn api.app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
