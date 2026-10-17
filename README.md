@@ -84,3 +84,14 @@ make web
 | `make web` | Launch Vite React dev server on port 5173 |
 | `make test` | Run pytest suite (leakage prevention, schemas, endpoints) |
 | `make lint` | Run Ruff linter and TypeScript type check |
+
+---
+
+## Deployment (Vercel)
+
+The web frontend is pre-configured for **Vercel** with zero-configuration monorepo support.
+- **Frontend**: Connect repository to [Vercel](https://vercel.com/new). The root [`vercel.json`](file:///Users/pranavoswal/Downloads/CardioMap3D-main/vercel.json) handles building the Vite app and SPA routing.
+- **Backend**: Deploy the containerized FastAPI service via [`Dockerfile`](file:///Users/pranavoswal/Downloads/CardioMap3D-main/Dockerfile) on Render, Railway, or Fly.io.
+- **Linking**: Set `VITE_API_URL` in Vercel project environment variables to point to your backend.
+
+See [`docs/DEPLOYMENT.md`](file:///Users/pranavoswal/Downloads/CardioMap3D-main/docs/DEPLOYMENT.md) for full step-by-step instructions.

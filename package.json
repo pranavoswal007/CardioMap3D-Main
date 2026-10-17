@@ -1,0 +1,12 @@
+{
+  "name": "cardiomap3d",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Interactive 3D Coronary Artery Risk Visualization & Multi-Vessel Stenosis Decision-Support System",
+  "scripts": {
+    "build": "npm --prefix web run build",
+    "dev": "npm --prefix web run dev",
+    "lint": "npm --prefix web run lint",
+    "test": "npm --prefix web run test"
+  }
+}

@@ -279,6 +279,11 @@ export function App() {
             <span>
               <strong>API Unreachable: </strong>
               {initError || 'Unable to connect to backend server on port 8000. Ensure the FastAPI dev server is running.'}
+              {typeof window !== 'undefined' && !['localhost', '127.0.0.1'].includes(window.location.hostname) && (
+                <span className="block mt-0.5 text-rose-300/80">
+                  Tip: Set the <code className="bg-rose-900/60 px-1 py-0.5 rounded text-[11px]">VITE_API_URL</code> environment variable in your Vercel project settings to connect your deployed backend.
+                </span>
+              )}
             </span>
           </div>
           <button
