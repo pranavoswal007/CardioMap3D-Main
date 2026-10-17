@@ -55,3 +55,4 @@ data/processed/*
 artifacts/*.onnx
 artifacts/*.pkl
 !artifacts/.gitkeep
+.vercel
